@@ -1,7 +1,8 @@
 package tubes.algeo.lib.type;
 
 public class Matriks {
-  private int nRows, nCols;
+  private final int nRows;
+  private final int nCols;
 
   public Matriks(int nRows, int nCols){
     this.nRows = nRows;
@@ -36,12 +37,13 @@ public class Matriks {
   }
 
   // Operasi OBE
-  public void plusMinusRow(int rowTarget, int row, double factor){
+  public Matriks plusMinusRow(int rowTarget, int row, double factor){
     // OBE buat nambahin atau ngurangin baris
+    return new Matriks(0,0);
   }
 
-  public void scaleRow(int rowTarget, double factor){
-
+  public Matriks scaleRow(int rowTarget, double factor){
+    return new Matriks(0,0);
   }
 
   public Matriks kofaktor(){

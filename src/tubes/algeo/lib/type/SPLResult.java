@@ -6,8 +6,8 @@ public class SPLResult {
   public static final int RESULT_NO_SOLUTION = -1;
   public static final int RESULT_MANY_SOLUTION = 1;
 
-  private Matriks result;
-  private int status;
+  private final Matriks result;
+  private final int status;
 
   public SPLResult(Matriks result, int status){
     this.result = result;

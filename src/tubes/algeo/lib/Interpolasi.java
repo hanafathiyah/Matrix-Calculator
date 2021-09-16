@@ -1,10 +1,11 @@
 package tubes.algeo.lib;
 
-import tubes.algeo.lib.type.Function;
+import tubes.algeo.lib.type.Polynomial;
 import tubes.algeo.lib.type.Node;
 
 public class Interpolasi {
-  public Function getFunction(Node[] titik, int degree){
-    return new Function();
+  public Polynomial getFunction(Node[] titik, int degree){
+    double[] tes = {1,2,3};
+    return new Polynomial(tes);
   }
 }
