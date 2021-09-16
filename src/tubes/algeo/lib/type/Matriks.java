@@ -62,4 +62,8 @@ public class Matriks {
   public Matriks product(Matriks m){
       return new Matriks(0,0);
   }
+
+  public Matriks copy() {
+    return new Matriks(0,0);
+  }
 }
