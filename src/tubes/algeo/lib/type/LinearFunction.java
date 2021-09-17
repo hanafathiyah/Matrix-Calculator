@@ -1,9 +1,9 @@
 package tubes.algeo.lib.type;
 
 public class LinearFunction {
-  private double[] coefficient;
+  private final double[] coefficient;
 
-  public LinearFunction(double coefficient[]){
+  public LinearFunction(double[] coefficient){
     this.coefficient = coefficient;
   }
 

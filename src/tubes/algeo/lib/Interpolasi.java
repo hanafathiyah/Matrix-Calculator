@@ -4,7 +4,7 @@ import tubes.algeo.lib.type.Polynomial;
 import tubes.algeo.lib.type.Node;
 
 public class Interpolasi {
-  public Polynomial getFunction(Node[] titik, int degree){
+  public static Polynomial getFunction(Node[] titik){
     double[] tes = {1,2,3};
     return new Polynomial(tes);
   }

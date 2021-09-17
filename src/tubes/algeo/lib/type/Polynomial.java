@@ -4,6 +4,10 @@ public class Polynomial {
   final double[] constant;
 
   public Polynomial(double[] constant){
+    // f(x) = 3x^3 + 2x + 1
+    // double const = { 1, 2, 3}
+    // Polynomial data = new Polynomial(const)
+    // data.calculate(2) -> ...
     this.constant = constant;
   }
 

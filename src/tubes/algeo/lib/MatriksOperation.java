@@ -6,4 +6,8 @@ public class MatriksOperation {
   public static Matriks inverse(Matriks m){
     return new Matriks(0,0);
   }
+
+  public static double determinant(Matriks m){
+    return 0;
+  }
 }

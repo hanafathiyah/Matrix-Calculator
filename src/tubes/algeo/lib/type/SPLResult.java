@@ -28,10 +28,10 @@ public class SPLResult {
 
   public Matriks getResult(){
     // Memberikan hasil SPL bila SPL punya solusi
-    return result;
+    return this.result;
   }
 
   public void printResult(){
-
+    // Mengeprint hasil SPL-nya
   }
 }

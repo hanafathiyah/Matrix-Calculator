@@ -14,7 +14,7 @@ public class AppTest
     }
 
     @Test
-    public void shouldEqual(){
+    public void shouldEqual() {
         Assert.assertEquals(12, 12);
     }
 }
