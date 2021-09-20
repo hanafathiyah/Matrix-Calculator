@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="bin/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="tubes-algeo1" />
+        <module name="tubes-algeo-1" />
       </profile>
     </annotationProcessing>
   </component>
