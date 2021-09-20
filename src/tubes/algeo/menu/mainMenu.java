@@ -8,12 +8,7 @@ import java.util.InputMismatchException;
 public class mainMenu {
 
     public static Scanner source = new Scanner(System.in);
-    public static Scanner file = new Scanner(System.in);
-    public static Scanner inputFile = new Scanner(System.in);
-    public static Matriks input;
-    public static double resultOfDeterminant;
-    public static int methodeOfDeterminant;
-
+    
     public static void main(String[] args) {
         menuUtama();
     }
