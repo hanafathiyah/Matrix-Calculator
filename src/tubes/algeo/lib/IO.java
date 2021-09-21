@@ -1,19 +1,19 @@
 package tubes.algeo.lib;
 import tubes.algeo.lib.type.Node;
 import tubes.algeo.lib.type.Matriks;
+import tubes.algeo.lib.type.SPLResult;
 
+import java.io.*;
 import java.util.Scanner;
-import java.io.FileNotFoundException;
-import java.io.File;
 
-public class FileManagement {
+public class IO {
   public static Scanner readFile(String path) throws FileNotFoundException{
     File f = new File(path);
     return new Scanner(f);
   }
 
   public static String readFileText(String path) throws FileNotFoundException{
-    Scanner stream = FileManagement.readFile(path);
+    Scanner stream = IO.readFile(path);
     String result = "";
 
     while(stream.hasNextLine()){
@@ -63,5 +63,28 @@ public class FileManagement {
     }
 
     return result;
+  }
+
+  static FileWriter openWriteMode(String path) throws Exception {
+    File f = new File(path);
+    FileWriter writer;
+
+    if(!f.exists()){
+      if(!f.createNewFile()){
+        throw new Exception("Gagal membuat file");
+      }else{
+        writer = new FileWriter(path);
+      }
+    }else{
+        writer = new FileWriter(path);
+    }
+
+    return writer;
+  }
+
+  public static void writeFileSPLResult(String path, SPLResult result) throws Exception {
+    FileWriter w = IO.openWriteMode(path);
+
+
   }
 }
