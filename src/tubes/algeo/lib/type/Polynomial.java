@@ -26,4 +26,27 @@ public class Polynomial {
 
     return result;
   }
+
+  public String getPolynomialStr(){
+    StringBuilder result = new StringBuilder();
+    result.append("p(x) = ");
+    for(int i = 0; i < this.constant.length; i++){
+      if(i == 0){
+        result.append(this.constant[i]);
+      }else if(i == 1){
+        result.append(this.constant[i]);
+        result.append("x");
+      }else{
+        result.append(this.constant[i]);
+        result.append("x^");
+        result.append(i);
+      }
+
+      if(i < this.constant.length - 1){
+        result.append(" + ");
+      }
+    }
+    result.append("\n");
+    return result.toString();
+  }
 }

@@ -25,4 +25,8 @@ public class LinearFunction {
       throw new Exception("Jumlah variabel yang diinputkan tidak sama");
     }
   }
+
+  public double[] getCoefficient(){
+    return this.coefficient;
+  }
 }
