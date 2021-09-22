@@ -26,14 +26,14 @@ public class IO {
 
   public static Matriks readFileMatriks(String path) throws FileNotFoundException {
     Scanner stream = readFile(path);
-    return getMatriks(stream);
+    return getMatriks(stream, false);
   }
 
   public static Node[] readFileNodes(String path) throws FileNotFoundException {
     int nx, nNodes;
 
     Scanner stream = readFile(path);
-    return getNodes(stream);
+    return getNodes(stream, false);
   }
 
   static FileWriter openWriteMode(String path) throws Exception {
@@ -69,29 +69,52 @@ public class IO {
 
   public static Matriks readMatrix(){
     Scanner stream = new Scanner(System.in);
-    return getMatriks(stream);
+    return getMatriks(stream, true);
   }
 
   public static Node[] readNodes(){
     int nx, nNodes;
 
     Scanner stream = new Scanner(System.in);
-    return getNodes(stream);
+    return getNodes(stream, true);
   }
 
-  private static Node[] getNodes(Scanner stream) {
+  private static Node[] getNodes(Scanner stream, boolean showHint) {
     int nx;
     int nNodes;
+
+    if(showHint){
+      System.out.print("Masukkan jumlah variabel : ");
+    }
     nx = stream.nextInt();
+
+    if(showHint){
+      System.out.print("Masukkan jumlah data : ");
+    }
     nNodes = stream.nextInt();
 
     Node[] result = new Node[nNodes];
 
     for(int i = 0; i < nNodes; i++){
+      if(showHint){
+        System.out.println("\n====");
+        System.out.print("Data ke-");
+        System.out.println(i+1);
+        System.out.println();
+        System.out.print("Masukkan hasil [y] : ");
+      }
+
       double y = stream.nextDouble();
       double[] xdata = new double[nx];
 
+      if(showHint){
+        System.out.println();
+      }
+
       for(int j = 0; j < nx; j++){
+        if(showHint){
+          System.out.printf("Masukkan parameter ke-%d [x%d] : ", j, j);
+        }
         xdata[j] = stream.nextDouble();
       }
 
@@ -101,13 +124,26 @@ public class IO {
     return result;
   }
 
-  private static Matriks getMatriks(Scanner stream) {
+  private static Matriks getMatriks(Scanner stream, boolean showHints) {
     int nrows;
     int ncolumns;
+
+    if(showHints){
+      System.out.println("Masukkan jumlah baris [nrows] : ");
+    }
     nrows = stream.nextInt();
+
+    if(showHints){
+      System.out.println("Masukkan jumlah kolom [ncols] : ");
+    }
     ncolumns = stream.nextInt();
 
     Matriks result = new Matriks(nrows, ncolumns);
+
+    if(showHints){
+      System.out.println("\n*** Mengambil data matriks ***");
+      System.out.printf("Silahkan masukan matriks anda [%d x %d] :", nrows, ncolumns);
+    }
 
     for(int i = 0; i < nrows; i++){
       for(int j = 0; j < ncolumns; j++){
