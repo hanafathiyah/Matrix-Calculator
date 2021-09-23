@@ -1,4 +1,5 @@
 package tubes.algeo.menu;
 
 public class menuInterpolasi {
+
 }

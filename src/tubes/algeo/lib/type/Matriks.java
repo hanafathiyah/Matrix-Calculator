@@ -110,14 +110,22 @@ public class Matriks {
   // 2 1 0 = plusMinusOBE(2, 1, 2)
   // 0 0 1
   public Matriks plusMinusOBE(int rowTarget, int row, double factor) {
-    return new Matriks();
+    Matriks M = new Matriks(this.nRows, this.nCols - 1);
+    for (int i = 0; i < this.nCols; i++) {
+      this.matrix[row][i] += (this.matrix[rowTarget][i] * factor);
+    }
+    return M;
   }
-
   // 1 0 0
   // 4 2 0 = scaleRow(2, 2)
   // 0 0 1
+
   public Matriks scaleRow(int rowTarget, double factor) {
-    return new Matriks(0, 0);
+    Matriks M = new Matriks(this.nRows, this.nCols - 1);
+    for (int i = 0; i < this.nCols; i++) {
+      this.matrix[rowTarget][i] *= factor;
+    }
+    return M;
   }
 
   // 0 0 1
@@ -161,6 +169,20 @@ public class Matriks {
     return hasil;
   }
 
+  public void gantiOneColom(Matriks rep, int col) {
+    //Assumption the matrix rep has only 1 column
+    for (int i = 0; i < this.nRows; i++) {
+      this.matrix[i][col] = rep.matrix[i][0];
+    }
+  }
+
+    public Matriks akhirDariAugmented(){
+    Matriks jawab = new Matriks(this.nRows, 1);
+    for (int row = 0; row < this.nRows; row++){
+      jawab.matrix[row][0] = this.matrix[row][this.nCols - 1];
+    }
+    return jawab;
+  }
   public void addRowToRow(int addingRow, int addedRow, double multiplier) {
     int j;
     for (j = 0; j < this.nCols; j++) {
@@ -201,24 +223,6 @@ public class Matriks {
       }
     }
     return swaps;
-  }
-
-  public double determinanByReduksi() {
-    Matriks proses = new Matriks();
-    proses.copyMatrix(this);
-    if (proses.isSquare()) {
-      int swaps = proses.toSegitigaAtas();
-      double result = 1;
-      if (swaps % 2 == 1) {
-        result = -1;
-      }
-      for (int i = 0; i < proses.nRows; i++) {
-        result *= proses.matrix[i][i];
-      }
-      return result;
-    } else { //Apabila bukan matrix persegi
-      return 0;
-    }
   }
 
   public double minorMatriks(int x, int y) {
@@ -295,6 +299,31 @@ public class Matriks {
     }
   }
 
+  public Matriks produk(Matriks m) throws Exception {
+
+    int nRows = this.nRows;
+    int nCols = this.nCols;
+    if (m.getNRows() == this.nRows && m.getNCols() == this.nCols) {
+      Matriks result = new Matriks(nRows, m.nCols);
+
+      for (int row = 0; row < nRows; row++) {
+        for (int col = 0; col < nCols; col++) {
+          result.matrix[row][col] = this.matrix[col][row];
+        }
+      }
+
+      for (int row = 0; row < nRows; row++) {
+        for (int col = 0; col < nCols; col++) {
+          this.matrix[row][col] = result.matrix[row][col];
+        }
+
+      }
+      return result;
+    }else {
+        throw new Exception("Jumlah baris dan kolom pada matriks tidak sama");
+      }
+    }
+
   public Matriks dotProduct(Matriks m) {
     //perkalian dot matrix dengan sisi kanannya
     //assume origin matrix has right dimension
@@ -311,6 +340,7 @@ public class Matriks {
     return dotResult;
   }
 
+  //Determinan
   public double determinanByKofaktor() {
     //Menggunakan perkalian dot pada baris pertama matriks dengan baris kofaktor
     Matriks temp = new Matriks();
@@ -322,6 +352,25 @@ public class Matriks {
     return hasil;
   }
 
+  public double determinanByReduksi() {
+    Matriks proses = new Matriks();
+    proses.copyMatrix(this);
+    if (proses.isSquare()) {
+      int swaps = proses.toSegitigaAtas();
+      double result = 1;
+      if (swaps % 2 == 1) {
+        result = -1;
+      }
+      for (int i = 0; i < proses.nRows; i++) {
+        result *= proses.matrix[i][i];
+      }
+     return result;
+    } else { //Apabila bukan matrix persegi
+      return 0;
+    }
+  }
+
+  //Adjoin Matrix
   public Matriks adjoinMatrix() {
     Matriks temp = new Matriks();
     temp = this.kofaktor();
@@ -337,14 +386,6 @@ public class Matriks {
         temp.matrix[row][col] *= k;
       }
     }
-    return temp;
-  }
-
-  public Matriks inverseByKofaktor(){
-    Matriks temp = new Matriks();
-    temp = this.adjoinMatrix();
-    double ratio = 1/(this.determinanByKofaktor());
-    temp = temp.conMultiplyMatrix(ratio);
     return temp;
   }
 
@@ -393,6 +434,14 @@ public class Matriks {
     }
   }
 
+  public Matriks inverseByKofaktor(){
+    Matriks temp = new Matriks();
+    temp = this.adjoinMatrix();
+    double ratio = 1/(this.determinanByKofaktor());
+    temp = temp.conMultiplyMatrix(ratio);
+    return temp;
+  }
+
   public Matriks inverseByAugmented(){
     //Assumption Matrix is square, however put a condition just in case
     Matriks inverse = new Matriks(this.nCols, this.nRows);
@@ -417,4 +466,28 @@ public class Matriks {
     }
     return inverse;
   }
+  private double methodCrammer(Matriks sol,int col){
+    Matriks wat = new Matriks();
+    wat.copyMatrix(this);
+    wat.gantiOneColom(sol, col);
+    return wat.determinanByReduksi();
+  }
+
+  public  Matriks metodeCrammer(){
+    //Fungsi menerima matriks augmented berukuran nx(n+1)
+    //pisah dahulu matriksnya baru bisa dilakkukan metodecrammer
+    //setelah dipisah matriks akan berukuran nxn dan nx1
+    Matriks asli = new Matriks();
+    asli = this.cutOneCol(this.nCols-1);
+    Matriks kons = new Matriks();
+    kons = this.akhirDariAugmented();
+    double det = asli.determinanByReduksi();
+    Matriks solusi = new Matriks(asli.nRows,1);
+    for (int i = 0; i < asli.nCols;i++){
+      double hasil = (asli.methodCrammer(kons, i) / det);
+      solusi.matrix[i][0] = hasil;
+    }
+    return solusi;
+  }
 }
+

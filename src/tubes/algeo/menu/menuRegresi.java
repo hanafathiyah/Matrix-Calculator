@@ -1,4 +1,3 @@
 package tubes.algeo.menu;
 
-public class menuRegresi {
-}
+public class menuRegresi {}
