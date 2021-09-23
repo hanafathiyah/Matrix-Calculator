@@ -5,7 +5,7 @@ public class Matriks {
   private int nRows;
   private int nCols;
   private double[][] matrix;
-  private final double epsilon = 0.00000001;
+  private final double epsilon = 1e-9;
 
   public Matriks() {
     nRows = 0;
@@ -269,7 +269,7 @@ public class Matriks {
 
       for (int i = 0; i < this.nRows; i++) {
         for (int j = 0; j < this.nCols; j++) {
-          result.setElmt(i, j, m.getElmt(i, j) - this.getElmt(i, j));
+          result.setElmt(i, j, this.getElmt(i, j) - m.getElmt(i, j));
         }
       }
       return result;
