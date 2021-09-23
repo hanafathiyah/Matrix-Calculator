@@ -1,6 +1,8 @@
 package tubes.algeo.lib.type;
 
 
+import tubes.algeo.lib.util.floatingPoint;
+
 public class SPLResult {
   public static final int RESULT_ONE_SOLUTION = 0;
   public static final int RESULT_NO_SOLUTION = -1;
@@ -15,7 +17,7 @@ public class SPLResult {
     this.status = status;
   }
 
-  public boolean isNoResult(){
+  public boolean isNoSolution(){
     return this.status == SPLResult.RESULT_NO_SOLUTION;
   }
 
@@ -35,17 +37,17 @@ public class SPLResult {
   public String getStrResult(){
     final int nVars = this.result.getNCols() - 1;
     if(this.isManySolution()){
-      String[] varName = new String[nVars - 1];
+      String[] varName = new String[nVars];
       for(int i = 0; i < varName.length; i++){
-        varName[i] = "r" + (Integer.valueOf(i)).toString();
+        varName[i] = "r_" + (Integer.valueOf(i)).toString();
       }
 
       int i = 0, eselon = 0;
-      while(i < nVars && eselon < nVars){
-        if(this.result.getElmt(i, eselon) == 1){
+      while(i < this.result.getNRows() && eselon < nVars){
+        if(floatingPoint.isEqual(this.result.getElmt(i, eselon), 1)){
           StringBuilder tmp = new StringBuilder((Double.valueOf(this.result.getElmt(i, nVars))).toString());
 
-          for(int j = i+1; j < nVars; j++){
+          for(int j = eselon+1; j < nVars; j++){
             if(this.result.getElmt(i, j) > 0){
               tmp.append(" - ");
               tmp.append(this.result.getElmt(i, j));
@@ -53,13 +55,13 @@ public class SPLResult {
               tmp.append(varName[j]);
             }else if(this.result.getElmt(i, j) < 0){
               tmp.append(" + ");
-              tmp.append(this.result.getElmt(i, j));
+              tmp.append(this.result.getElmt(i, j) * -1);
               tmp.append("*");
               tmp.append(varName[j]);
             }
           }
 
-          varName[i] = tmp.toString();
+          varName[eselon] = tmp.toString();
           eselon++;
           i++;
         }else if(this.result.getElmt(i, eselon) == 0){
@@ -69,24 +71,30 @@ public class SPLResult {
 
       StringBuilder result = new StringBuilder();
       for(int j = 0; j < varName.length; j++){
-        result.append("x");
+        result.append("x_");
         result.append(j+1);
         result.append(" = ");
-        result.append(varName[i]);
-        result.append("\n");
+        result.append(varName[j]);
+
+        if(j < varName.length - 1){
+          result.append("; ");
+        }
       }
 
       return result.toString();
-    }else if(this.isNoResult()){
-      return "Persamaan tidak memiliki solusi.";
+    }else if(this.isNoSolution()){
+      return "Persamaan tidak memiliki solusi";
     }else{
       StringBuilder result = new StringBuilder();
       for(int i = 0; i < nVars; i++){
-        result.append("x");
+        result.append("x_");
         result.append(i+1);
         result.append(" = ");
         result.append(this.result.getElmt(i, nVars));
-        result.append("\n");
+
+        if(i < nVars - 1){
+          result.append("; ");
+        }
       }
 
       return result.toString();

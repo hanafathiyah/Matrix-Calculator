@@ -35,10 +35,10 @@ public class Polynomial {
         result.append(this.constant[i]);
       }else if(i == 1){
         result.append(this.constant[i]);
-        result.append("x");
+        result.append("*x");
       }else{
         result.append(this.constant[i]);
-        result.append("x^");
+        result.append("*x^");
         result.append(i);
       }
 
@@ -46,7 +46,7 @@ public class Polynomial {
         result.append(" + ");
       }
     }
-    result.append("\n");
+
     return result.toString();
   }
 }

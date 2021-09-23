@@ -13,11 +13,11 @@ public class LinearFunction {
   }
 
   public double calculate(double[] value) throws Exception {
-    if(value.length != this.getVariableNumber()){
+    if(value.length == this.getVariableNumber()){
       double result = this.coefficient[0];
 
       for(int i = 1; i < this.coefficient.length; i++){
-        result += value[i] * this.coefficient[i];
+        result += value[i-1] * this.coefficient[i];
       }
 
       return result;
@@ -26,7 +26,7 @@ public class LinearFunction {
     }
   }
 
-  public double[] getCoefficient(){
+  public double[] getCoefficients(){
     return this.coefficient;
   }
 }
