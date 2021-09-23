@@ -11,4 +11,7 @@ clean:
 
 clear: clean
 
-.PHONY: run build all clean clear
+test:
+	@mvn test
+
+.PHONY: run build all clean clear test
