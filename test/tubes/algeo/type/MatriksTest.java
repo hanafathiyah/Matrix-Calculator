@@ -276,4 +276,31 @@ public class MatriksTest {
     testKesamaanMatriks(mres2, m2);
     testKesamaanMatriks(mres3, m3); // Gagal TC, Sisi kanan Augmentednya habis
   }
+
+  @Test
+  public void gaussJordanTakAdaSolusi(){
+    double[][] tc1 = {{1,1,2},{2,2,3}};
+    double[][] tc2 = {{1,2,1,5},{1,1,1,9},{2,5,2,4}};
+    double[][] tc3 = {{1,2,3,1},{2,4,6,9}};
+
+    double[][] res1 = {{1,1,2},{0,0,-1}};
+    double[][] res2 = {{1,0,1,13},{0,1,0,-4},{0,0,0,-2}};
+    double[][] res3 = {{1,2,3,1},{0,0,0,7}};
+
+    Matriks m1 = matriksBuilderHelper(tc1);
+    Matriks m2 = matriksBuilderHelper(tc2);
+    Matriks m3 = matriksBuilderHelper(tc3);
+
+    Matriks mres1 = matriksBuilderHelper(res1);
+    Matriks mres2 = matriksBuilderHelper(res2);
+    Matriks mres3 = matriksBuilderHelper(res3);
+
+    m1.eliminasiGaussJordan();
+    m2.eliminasiGaussJordan();
+    m3.eliminasiGaussJordan();
+
+    testKesamaanMatriks(mres1, m1);
+    testKesamaanMatriks(mres2, m2);
+    testKesamaanMatriks(mres3, m3);
+  }
 }
