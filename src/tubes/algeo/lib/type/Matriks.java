@@ -39,6 +39,10 @@ public class Matriks {
     }
   }
 
+  public Matriks(Matriks matriks){
+    this.copyMatrix(matriks);
+  }
+
   // Selektor
   public int getNRows() {
     return nRows;
@@ -106,8 +110,7 @@ public class Matriks {
   // 2 1 0 = plusMinusOBE(2, 1, 2)
   // 0 0 1
   public Matriks plusMinusOBE(int rowTarget, int row, double factor) {
-    // OBE buat nambahin atau ngurangin baris
-    return new Matriks(0, 0);
+    return new Matriks();
   }
 
   // 1 0 0
