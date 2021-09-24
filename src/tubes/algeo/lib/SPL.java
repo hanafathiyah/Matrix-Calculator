@@ -55,9 +55,10 @@ public class SPL {
   }
 
   public static SPLResult kofaktorMethod(Matriks augmented){
-    // Gaada solusi
-    Matriks res = new Matriks(0,0);
-    return new SPLResult(res, SPLResult.RESULT_NO_SOLUTION);
+    Matriks operasi = new Matriks(augmented);
+    operasi.kofaktor();
+
+    return new SPLResult(operasi, SPL.solutionChecker(operasi));
   }
 
   public static SPLResult cramer(Matriks augmented){
