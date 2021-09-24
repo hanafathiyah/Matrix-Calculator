@@ -1,7 +1,7 @@
 package tubes.algeo.menu;
 
 public class menuSPL {
-    public static void  SPL() {
+    public static void  menuspl() {
         System.out.println("~~~~~~~ Menghitung SPL ~~~~~~~~");
     }
 }
