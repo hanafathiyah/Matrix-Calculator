@@ -45,18 +45,35 @@ public class SPLResult {
       int i = 0, eselon = 0;
       while(i < this.result.getNRows() && eselon < nVars){
         if(floatingPoint.isEqual(this.result.getElmt(i, eselon), 1)){
-          StringBuilder tmp = new StringBuilder((Double.valueOf(this.result.getElmt(i, nVars))).toString());
+          double val = this.result.getElmt(i, nVars);
+          StringBuilder tmp = new StringBuilder();
+
+          if(val != 0.0){
+            tmp.append(val);
+          }
 
           for(int j = eselon+1; j < nVars; j++){
             if(this.result.getElmt(i, j) > 0){
-              tmp.append(" - ");
-              tmp.append(this.result.getElmt(i, j));
-              tmp.append("*");
+              if(val != 0.0){
+                tmp.append(" - ");
+              }
+
+              if(this.result.getElmt(i, j) != 1){
+                tmp.append(this.result.getElmt(i, j));
+                tmp.append("*");
+              }
+
               tmp.append(varName[j]);
             }else if(this.result.getElmt(i, j) < 0){
-              tmp.append(" + ");
-              tmp.append(this.result.getElmt(i, j) * -1);
-              tmp.append("*");
+              if(val != 0.0){
+                tmp.append(" + ");
+              }
+
+              if(this.result.getElmt(i, j) != -1){
+                tmp.append(this.result.getElmt(i, j) * -1);
+                tmp.append("*");
+              }
+
               tmp.append(varName[j]);
             }
           }

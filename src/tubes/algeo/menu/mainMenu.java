@@ -1,7 +1,7 @@
 package tubes.algeo.menu;
 
 import tubes.algeo.lib.type.Matriks;
-
+import tubes.algeo.lib.IO;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
