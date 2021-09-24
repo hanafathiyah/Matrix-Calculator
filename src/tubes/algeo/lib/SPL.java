@@ -50,6 +50,7 @@ public class SPL {
   public static SPLResult gaussJordanElimination(Matriks augmented){
     Matriks operasi = new Matriks(augmented);
     operasi.eliminasiGaussJordan();
+
     return new SPLResult(operasi, SPL.solutionChecker(operasi));
   }
 

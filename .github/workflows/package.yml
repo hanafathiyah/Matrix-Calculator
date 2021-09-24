@@ -1,0 +1,15 @@
+name: Testing Java
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  packaging:
+    name: "Membuat build dari Release"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Mempersiapkan JDK 17
