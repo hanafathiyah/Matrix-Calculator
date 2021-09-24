@@ -1,5 +1,7 @@
 package tubes.algeo.menu;
 
 public class menuDeterminan {
-    System.out.println("~~~~~~~ Mencari Determinan ~~~~~~~~");
+    public static void Determinan() {
+        System.out.println("~~~~~~~ Mencari Determinan ~~~~~~~~");
+    }
 }
