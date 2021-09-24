@@ -1,4 +1,3 @@
-
 package tubes.algeo.lib.type;
 
 public class Matriks {
@@ -39,7 +38,7 @@ public class Matriks {
     }
   }
 
-  public Matriks(Matriks matriks){
+  public Matriks(Matriks matriks) {
     this.copyMatrix(matriks);
   }
 
@@ -176,13 +175,14 @@ public class Matriks {
     }
   }
 
-    public Matriks akhirDariAugmented(){
+  public Matriks akhirDariAugmented() {
     Matriks jawab = new Matriks(this.nRows, 1);
-    for (int row = 0; row < this.nRows; row++){
+    for (int row = 0; row < this.nRows; row++) {
       jawab.matrix[row][0] = this.matrix[row][this.nCols - 1];
     }
     return jawab;
   }
+
   public void addRowToRow(int addingRow, int addedRow, double multiplier) {
     int j;
     for (j = 0; j < this.nCols; j++) {
@@ -319,10 +319,10 @@ public class Matriks {
 
       }
       return result;
-    }else {
-        throw new Exception("Jumlah baris dan kolom pada matriks tidak sama");
-      }
+    } else {
+      throw new Exception("Jumlah baris dan kolom pada matriks tidak sama");
     }
+  }
 
   public Matriks dotProduct(Matriks m) {
     //perkalian dot matrix dengan sisi kanannya
@@ -364,7 +364,7 @@ public class Matriks {
       for (int i = 0; i < proses.nRows; i++) {
         result *= proses.matrix[i][i];
       }
-     return result;
+      return result;
     } else { //Apabila bukan matrix persegi
       return 0;
     }
@@ -389,105 +389,126 @@ public class Matriks {
     return temp;
   }
 
-  public Matriks augmentedKanan(Matriks right){
+  public Matriks augmentedKanan(Matriks right) {
     //Precondition: this.nRow == right.nRow
     Matriks hasil = new Matriks(this.nRows, this.nCols + right.nCols);
-    for(int i=0; i<this.nRows; i++){
-      for(int j=0; j<this.nCols; j++){
+    for (int i = 0; i < this.nRows; i++) {
+      for (int j = 0; j < this.nCols; j++) {
         hasil.matrix[i][j] = this.matrix[i][j];
       }
-      for(int j=0; j<right.nCols; j++){
+      for (int j = 0; j < right.nCols; j++) {
         hasil.matrix[i][this.nCols + j] = right.matrix[i][j];
       }
     }
     return hasil;
   }
-  public void eliminasiGauss(){
+
+  public void eliminasiGauss() {
     this.toSegitigaAtas();
-    int idxBukanNol=0;
-    for(int i=0; i<this.nRows; i++){
-      while(idxBukanNol<this.nCols && -epsilon < this.matrix[i][idxBukanNol] && this.matrix[i][idxBukanNol] < epsilon){
+    int idxBukanNol = 0;
+    for (int i = 0; i < this.nRows; i++) {
+      while (idxBukanNol < this.nCols && -epsilon < this.matrix[i][idxBukanNol] && this.matrix[i][idxBukanNol] < epsilon) {
         this.matrix[i][idxBukanNol] = 0;
         idxBukanNol++;
       }
-      if(idxBukanNol<this.nCols){
-        for(int j=this.nCols-1; j>=idxBukanNol; j--){
+      if (idxBukanNol < this.nCols) {
+        for (int j = this.nCols - 1; j >= idxBukanNol; j--) {
           this.matrix[i][j] /= this.matrix[i][idxBukanNol];
         }
 
       }
     }
   }
-  public void eliminasiGaussJordan(){
+
+  public void eliminasiGaussJordan() {
     this.eliminasiGauss();
-    int awal=0;
-    for(int i=0; i<this.nRows; i++){
-      while(awal<this.nCols && -epsilon < this.matrix[i][awal] && this.matrix[i][awal] < epsilon){
+    int awal = 0;
+    for (int i = 0; i < this.nRows; i++) {
+      while (awal < this.nCols && -epsilon < this.matrix[i][awal] && this.matrix[i][awal] < epsilon) {
         this.matrix[i][awal] = 0;
         awal++;
       }
-      if(awal<this.nCols){
-        for(int j=0; j<i; j++){
+      if (awal < this.nCols) {
+        for (int j = 0; j < i; j++) {
           this.addRowToRow(i, j, -this.matrix[j][awal]);
         }
       }
     }
   }
 
-  public Matriks inverseByKofaktor(){
+  public Matriks inverseByKofaktor() {
     Matriks temp = new Matriks();
     temp = this.adjoinMatrix();
-    double ratio = 1/(this.determinanByKofaktor());
+    double ratio = 1 / (this.determinanByKofaktor());
     temp = temp.conMultiplyMatrix(ratio);
     return temp;
   }
 
-  public Matriks inverseByAugmented(){
+  public Matriks inverseByAugmented() {
     //Assumption Matrix is square, however put a condition just in case
     Matriks inverse = new Matriks(this.nCols, this.nRows);
-    if(this.isSquare()){
+    if (this.isSquare()) {
       Matriks identity = new Matriks(this.nRows);
       Matriks augmented = new Matriks();
       augmented = this.augmentedKanan(identity);
       augmented.eliminasiGaussJordan();
       boolean isIdentityAfterInverse = true;
-      for(int i=0; i<this.nRows; i++){
-        if(augmented.matrix[i][i] != 1){
+      for (int i = 0; i < this.nRows; i++) {
+        if (augmented.matrix[i][i] != 1) {
           isIdentityAfterInverse = false;
         }
       }
-      if(isIdentityAfterInverse){
-        for(int i=0; i<this.nRows; i++){
-          for(int j=0; j<this.nCols; j++){
-            inverse.matrix[i][j] = augmented.matrix[i][j+this.nCols];
+      if (isIdentityAfterInverse) {
+        for (int i = 0; i < this.nRows; i++) {
+          for (int j = 0; j < this.nCols; j++) {
+            inverse.matrix[i][j] = augmented.matrix[i][j + this.nCols];
           }
         }
       }
     }
     return inverse;
   }
-  private double methodCrammer(Matriks sol,int col){
+
+  private double methodCrammerHelper(Matriks sol, int col) {
     Matriks wat = new Matriks();
     wat.copyMatrix(this);
     wat.gantiOneColom(sol, col);
     return wat.determinanByReduksi();
   }
 
-  public  Matriks metodeCrammer(){
+  public Matriks metodeCrammer() throws Exception {
     //Fungsi menerima matriks augmented berukuran nx(n+1)
     //pisah dahulu matriksnya baru bisa dilakkukan metodecrammer
     //setelah dipisah matriks akan berukuran nxn dan nx1
-    Matriks asli = new Matriks();
-    asli = this.cutOneCol(this.nCols-1);
-    Matriks kons = new Matriks();
-    kons = this.akhirDariAugmented();
-    double det = asli.determinanByReduksi();
-    Matriks solusi = new Matriks(asli.nRows,1);
-    for (int i = 0; i < asli.nCols;i++){
-      double hasil = (asli.methodCrammer(kons, i) / det);
-      solusi.matrix[i][0] = hasil;
+    if (this.getNRows() + 1 == this.getNCols()) {
+      Matriks asli, kons;
+      asli = this.cutOneCol(this.nCols - 1);
+      kons = this.akhirDariAugmented();
+
+      double det = asli.determinanByReduksi();
+      Matriks solusi = new Matriks(asli.nRows, 1);
+      for (int i = 0; i < asli.nCols; i++) {
+        double hasil = (asli.methodCrammerHelper(kons, i) / det);
+        solusi.matrix[i][0] = hasil;
+      }
+
+      Matriks augmentedSolusi = new Matriks(this.getNRows(), this.getNCols());
+      for(int i=0; i < augmentedSolusi.getNRows(); i++){
+        for(int j=0; j < augmentedSolusi.getNCols(); j++){
+          if(j == augmentedSolusi.getNCols() - 1){
+            augmentedSolusi.setElmt(i,j,solusi.getElmt(i,0));
+          }else if(i == j){
+            augmentedSolusi.setElmt(i,j,1);
+          }else{
+            augmentedSolusi.setElmt(i,j,0);
+          }
+        }
+      }
+
+      return augmentedSolusi;
+    } else {
+      throw new Exception("Ukuran matriks yang digunakan tidak diizinkan.");
     }
-    return solusi;
   }
 }
 
