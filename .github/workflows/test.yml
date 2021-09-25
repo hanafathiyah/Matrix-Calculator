@@ -16,6 +16,7 @@ jobs:
       - name: Buat menggunakan maven
         run: mvn --batch-mode --update-snapshots package assembly:single
       - name: Buat Release di github
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
