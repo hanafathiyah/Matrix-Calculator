@@ -179,4 +179,15 @@ public class SPLResultTest {
     Assert.assertEquals("Persamaan tidak memiliki solusi",res4.getStrResult());
     Assert.assertEquals("x_1 = 5.0; x_2 = 7.0; x_3 = 2.0; x_4 = 3.0",res5.getStrResult());
   }
+
+  @Test
+  public void testGetKonstanta() throws Exception{
+    double[][] tc = {{1,0,0,3},{0,1,0,2},{0,0,1,1}};
+    Matriks mtc = SPLResultTest.matriksBuilderHelper(3,4,tc);
+    SPLResult stc = new SPLResult(mtc, SPLResult.RESULT_ONE_SOLUTION);
+
+    double[] ans = {3,2,1};
+    double[] res = stc.getVariableValue();
+    Assert.assertArrayEquals(ans, res, 1e-9);
+  }
 }

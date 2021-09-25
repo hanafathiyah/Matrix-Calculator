@@ -34,6 +34,22 @@ public class SPLResult {
     return this.result;
   }
 
+  public double[] getVariableValue() throws Exception {
+    if(this.isOneSolution()){
+      double[] result = new double[this.result.getNCols()-1];
+
+      int c = 0;
+      for(double[] i : this.result.getMatrix()){
+        result[c] = i[this.result.getNCols() - 1];
+        c++;
+      }
+
+      return result;
+    }else{
+      throw new Exception("Fungsi ini hanya berlaku untuk solusi tunggal");
+    }
+  }
+
   public String getStrResult(){
     final int nVars = this.result.getNCols() - 1;
     if(this.isManySolution()){
