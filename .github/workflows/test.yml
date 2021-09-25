@@ -13,13 +13,5 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - name: Buat menggunakan maven
-        run: mvn --batch-mode --update-snapshots package assembly:single
-      - name: Buat Release di github
-        uses: marvinpinto/action-automatic-releases@latest
-        with:
-          automatic_release_tag: "latest"
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          files: |
-            bin/tubes-algeo.jar
+      - name: Testing TC
+        run: mvn --batch-mode --update-snapshots test
