@@ -61,8 +61,10 @@ public class SPL {
     return new SPLResult(operasi, SPL.solutionChecker(operasi));
   }
 
-  public static SPLResult cramer(Matriks augmented){
-    Matriks res = new Matriks(10,1);
-    return new SPLResult(res, SPLResult.RESULT_ONE_SOLUTION);
+  public static SPLResult cramer(Matriks augmented) throws Exception {
+    Matriks operasi = new Matriks(augmented);
+    operasi.metodeCrammer();
+    operasi.toSegitigaAtas();
+    return new SPLResult(operasi, SPLResult.RESULT_ONE_SOLUTION);
   }
 }
