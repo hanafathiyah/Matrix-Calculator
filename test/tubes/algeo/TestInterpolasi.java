@@ -64,5 +64,6 @@ public class TestInterpolasi {
 
     Assert.assertEquals(3, res.getDegree());
     Assert.assertEquals("p(x) = 2.0 + 2.0*x + 1.0*x^2 + 1.0*x^3", res.getPolynomialStr());
+    Assert.assertEquals(-6, res.calculate(-2), 1e-9);
   }
 }

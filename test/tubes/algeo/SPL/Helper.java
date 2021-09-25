@@ -4,7 +4,7 @@ import org.junit.Assert;
 import tubes.algeo.lib.type.Matriks;
 
 public class Helper {
-  static Matriks matriksBuilderHelper(double[][] payload) {
+  static public Matriks matriksBuilderHelper(double[][] payload) {
     Matriks result = new Matriks(payload.length, payload[0].length);
 
     for (int i = 0; i < result.getNRows(); i++) {
@@ -16,7 +16,7 @@ public class Helper {
     return result;
   }
 
-  static void testKesamaanMatriks(Matriks m1, Matriks m2) {
+  static public void testKesamaanMatriks(Matriks m1, Matriks m2) {
     Assert.assertEquals(m1.getNCols(), m2.getNCols());
     Assert.assertEquals(m1.getNRows(), m2.getNRows());
 

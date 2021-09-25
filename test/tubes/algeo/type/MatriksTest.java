@@ -143,22 +143,6 @@ public class MatriksTest {
   }
 
   @Test
-  @Ignore
-  public void testMatriksProduct() throws Exception {
-    double[][] data1 = {{0, 2, 2, 5}, {10, 6, 2, 6}};
-    double[][] data2 = {{0, 1, 9, 3}, {8, 7, 6, 2}};
-    double[][] res = {{0, 2, 18, 15}, {80, 42, 12, 12}};
-
-    Matriks m1 = matriksBuilderHelper(data1);
-    Matriks m2 = matriksBuilderHelper(data2);
-    Matriks mres = matriksBuilderHelper(res);
-
-    m1.produk(m2);
-
-    testKesamaanMatriks(m1, mres);
-  }
-
-  @Test
   public void testDotProduct() throws Exception {
     double[][] data1 = {{0, 2, 2, 5}, {10, 6, 2, 6}};
     double[][] data2 = {{0, 1, 9, 3}, {8, 7, 6, 2}, {1, 9, 2, 5}, {1, 1, 2, -9}};
