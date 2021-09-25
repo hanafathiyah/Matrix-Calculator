@@ -2,6 +2,9 @@ package tubes.algeo.menu;
 
 import tubes.algeo.lib.type.Matriks;
 import tubes.algeo.lib.IO;
+import tubes.algeo.lib.util.terminalColor;
+
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -9,16 +12,22 @@ public class mainMenu {
 
     public static Scanner source = new Scanner(System.in);
     
-    public static void main(String[] args) {
+    public static void menu() throws Exception {
         menuUtama();
     }
 
-    private static void menuUtama() {
+    private static void menuUtama() throws IOException {
         while (true) {
             try {
                 int pilihan;
                 System.out.println(" ");
-                System.out.println("~~~~~~~ Selamat Datang di Program Matrix Java Kelompok DelTa ~~~~~~~~");
+                System.out.println(" ___________                        _________                      __  .__    .__                 \n" +
+                        "\\__    ___/__.__.______   ____    /   _____/ ____   _____   _____/  |_|  |__ |__| ____    ____   \n" +
+                        "  |    | <   |  |\\____ \\_/ __ \\   \\_____  \\ /  _ \\ /     \\_/ __ \\   __\\  |  \\|  |/    \\  / ___\\  \n" +
+                        "  |    |  \\___  ||  |_> >  ___/   /        (  <_> )  Y Y  \\  ___/|  | |   Y  \\  |   |  \\/ /_/  > \n" +
+                        "  |____|  / ____||   __/ \\___  > /_______  /\\____/|__|_|  /\\___  >__| |___|  /__|___|  /\\___  /  \n" +
+                        "          \\/     |__|        \\/          \\/             \\/     \\/          \\/        \\//_____/   ");
+                System.out.println(terminalColor.TEXT_CYAN + "~~~~~~~ Selamat Datang di Program Matrix Java Kelompok DelTa ~~~~~~~~" + terminalColor.TEXT_RESET);
                 System.out.println("Program ini berisi sistem-sistem penggunaan matrix dengan bahasa java");
                 System.out.println("=====================================================================");
                 System.out.println(" ");
@@ -51,7 +60,7 @@ public class mainMenu {
                             break;
                         }
                         case 4: {
-                            new menuInterpolasi(); //tanpa sub menu
+                            menuInterpolasi.menu();
                             break;
                         }
                         case 5: {
@@ -63,7 +72,6 @@ public class mainMenu {
                             break;
                         }
                     }
-                    menuUtama();
                 }
             } catch(InputMismatchException e){
                 source.next();
@@ -72,7 +80,6 @@ public class mainMenu {
                 try{
                     System.in.read();
                 } catch(Exception exKey){}
-                menuUtama();
                 return;
 
             } catch (Exception e) {
@@ -82,7 +89,6 @@ public class mainMenu {
                     System.in.read();
                 } catch (Exception exKey) {
                 }
-                menuUtama();
                 return;
             }
         }
