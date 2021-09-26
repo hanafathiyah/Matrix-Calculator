@@ -129,12 +129,12 @@ public class IO {
     int ncolumns;
 
     if(showHints){
-      System.out.println("Masukkan jumlah baris [nrows] : ");
+      System.out.print("Masukkan jumlah baris [nrows] : ");
     }
     nrows = stream.nextInt();
 
     if(showHints){
-      System.out.println("Masukkan jumlah kolom [ncols] : ");
+      System.out.print("Masukkan jumlah kolom [ncols] : ");
     }
     ncolumns = stream.nextInt();
 
@@ -142,7 +142,7 @@ public class IO {
 
     if(showHints){
       System.out.println("\n*** Mengambil data matriks ***");
-      System.out.printf("Silahkan masukan matriks anda [%d x %d] :", nrows, ncolumns);
+      System.out.printf("Silahkan masukan matriks anda [%d x %d] :\n", nrows, ncolumns);
     }
 
     for(int i = 0; i < nrows; i++){
