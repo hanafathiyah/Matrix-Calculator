@@ -1,7 +1,7 @@
 package tubes.algeo.menu;
 import tubes.algeo.lib.type.Matriks;
 import tubes.algeo.lib.util.terminalColor;
-import java.io.Console;
+import java.util.Scanner;
 public class menuDeterminan {
     public static void menu(){
         menudeterminan();
@@ -19,15 +19,15 @@ public class menuDeterminan {
     public static void bacamatriksdet () {
         int baris, kolom;
         Matriks matriksdet = new Matriks();
-        Console con = System.console();
+        Scanner source = new Scanner(System.in);
         System.out.println("Masukkan ukuran matriks");
         System.out.print("Baris: ");
-        baris = Integer.parseInt(con.readLine());
+        baris = source.nextInt();
         System.out.print("Kolom: ");
-        kolom = Integer.parseInt(con.readLine());
+        kolom = source.nextInt();
         for (int i = 0; i < baris; i++) {
             for(int j = 0; j < kolom; j++){
-                int elmt = Integer.parseInt(con.readLine());
+                int elmt = source.nextInt();
                 matriksdet.setElmt(i,j,elmt);
             }
         }
