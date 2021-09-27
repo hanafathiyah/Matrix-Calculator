@@ -65,6 +65,6 @@ public class SPL {
     Matriks operasi = new Matriks(augmented);
     operasi.metodeCrammer();
     operasi.toSegitigaAtas();
-    return new SPLResult(operasi, SPLResult.RESULT_ONE_SOLUTION);
+    return new SPLResult(operasi, SPL.solutionChecker(operasi));
   }
 }
