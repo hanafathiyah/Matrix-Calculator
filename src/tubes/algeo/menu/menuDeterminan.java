@@ -15,10 +15,10 @@ public class menuDeterminan {
                 "██   ██ ██         ██    ██      ██   ██ ██  ██  ██ ██ ██  ██ ██ ██   ██ ██  ██ ██ \n" +
                 "██████  ███████    ██    ███████ ██   ██ ██      ██ ██ ██   ████ ██   ██ ██   ████ \n" +
                 "                                                                                   \n" + terminalColor.TEXT_RESET);
-        Matriks input = IO.readMatrix();
+        Matriks input = menuInput.getMatriks("Determinan");
         if (input.isSquare()) {
             double determinan = input.determinanByKofaktor();
-            System.out.println("Determinan matriks tersebut adalah " + determinan+".");
+            menuOutput.showResult((new Double(determinan)).toString());
         } else {
             System.out.println("Matriks harus persegi.");
         }
