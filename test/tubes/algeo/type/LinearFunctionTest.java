@@ -44,4 +44,13 @@ public class LinearFunctionTest {
     Assert.assertEquals(lf.getCoefficients(), coeff);
     Assert.assertEquals(lf2.getCoefficients(), coeff2);
   }
+
+  @Test
+  public void testStr(){
+    double[] coeff = {1, -2, 3, -5, 4};
+
+    LinearFunction lf = new LinearFunction(coeff);
+
+    Assert.assertEquals("f = 1.0 - 2.0*x_1 + 3.0*x_2 - 5.0*x_3 + 4.0*x_4", lf.getStrResult());
+  }
 }

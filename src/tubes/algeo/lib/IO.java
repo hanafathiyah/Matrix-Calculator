@@ -53,6 +53,12 @@ public class IO {
     return writer;
   }
 
+  public static void writeTextFile(String path, String text) throws Exception{
+    FileWriter w = IO.openWriteMode(path);
+    w.write(text);
+    w.close();
+  }
+
   public static void writeFileSPLResult(String path, SPLResult result) throws Exception {
     FileWriter w = IO.openWriteMode(path);
     String strResult = result.getStrResult();
@@ -66,6 +72,16 @@ public class IO {
     w.write(strResult);
     w.close();
   }
+
+  public static void writeText(String text){
+    System.out.println(text);
+  }
+
+  public static void writePolynomial(Polynomial result) throws Exception{
+    System.out.println(result.getPolynomialStr());
+  }
+
+
 
   public static Matriks readMatrix(){
     Scanner stream = new Scanner(System.in);

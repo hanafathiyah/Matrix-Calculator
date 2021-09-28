@@ -133,4 +133,8 @@ public class SPLResult {
       return result.toString();
     }
   }
+
+  public String getMatriksStr(){
+    return this.result.getMatriksStr();
+  }
 }

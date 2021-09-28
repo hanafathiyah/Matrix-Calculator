@@ -26,6 +26,28 @@ public class LinearFunction {
     }
   }
 
+  public String getStrResult(){
+    StringBuilder result = new StringBuilder();
+    result.append("f = ");
+    result.append(this.coefficient[0]);
+
+    for(int i = 1; i < this.coefficient.length; i++){
+      if(this.coefficient[i] < 0){
+        result.append(" - ");
+        result.append(this.coefficient[i] * -1);
+      }else{
+        result.append(" + ");
+        result.append(this.coefficient[i]);
+      }
+
+      result.append("*");
+      result.append("x_");
+      result.append(i);
+    }
+
+    return result.toString();
+  }
+
   public double[] getCoefficients(){
     return this.coefficient;
   }

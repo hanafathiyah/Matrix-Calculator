@@ -510,5 +510,23 @@ public class Matriks {
       throw new Exception("Ukuran matriks yang digunakan tidak diizinkan.");
     }
   }
+
+  public String getMatriksStr(){
+    StringBuilder res = new StringBuilder();
+
+    for(int i = 0; i < this.getNRows(); i++){
+      for(int j = 0; j < this.getNCols(); j++){
+        res.append(this.getElmt(i,j));
+
+        if(i < this.getNRows() - 1){
+          res.append(" ");
+        }
+      }
+
+      res.append("\n");
+    }
+
+    return res.toString();
+  }
 }
 
