@@ -164,7 +164,9 @@ public class mainMenu {
                             break;
                         }
                     }
-                    menuUtama();
+
+                    System.out.println(terminalColor.TEXT_CYAN + "**** Silahkan tekan enter untuk melanjutkan program ****" + terminalColor.TEXT_RESET);
+                    System.in.read();
                 }
             } catch(InputMismatchException e){
                 source.next();
