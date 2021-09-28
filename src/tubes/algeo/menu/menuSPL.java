@@ -1,5 +1,7 @@
 package tubes.algeo.menu;
+import tubes.algeo.lib.SPL;
 import tubes.algeo.lib.type.Matriks;
+import tubes.algeo.lib.type.SPLResult;
 import tubes.algeo.lib.util.terminalColor;
 
 import java.util.Scanner;
@@ -18,25 +20,43 @@ public class menuSPL {
                 "███████║██║     ███████╗\n" +
                 "╚══════╝╚═╝     ╚══════╝\n" +
                 "                        \n" + terminalColor.TEXT_RESET);
-        System.out.print("Jumlah variabel: ");
-        int jumlah_variabel = source.nextInt();
-        System.out.println("");
-        System.out.print("Jumlah persamaan: ");
-        int jumlah_persamaan = source.nextInt();
-        System.out.println("");
-        Matriks spl = new Matriks(jumlah_persamaan, jumlah_variabel+1);
-        for(int i = 0; i < jumlah_persamaan; i++) {
-            for (int j = 0; j < jumlah_variabel + 1; j++) {
-                if (j < jumlah_variabel) {
-                    System.out.print("x" + j + " = ");
-                } else {
-                    System.out.print("constant = ");
-                }
-                spl.setElmt(i, j, source.nextInt());
-                System.out.print(" ");
+
+        Matriks augmented = menuInput.getMatriks("Sistem Persamaan Linear",
+                "Masukkan matriks augmented yang diinginkan");
+
+        try {
+            int algorithm = menuInput.getMethod("Sistem Persamaan Linear");
+            SPLResult result;
+
+            switch (algorithm){
+                case menuInput.METHOD_ELIMINASI_GAUSS:
+                    result = SPL.gaussElimination(augmented);
+                    break;
+                case menuInput.METHOD_ELIMINASI_GAUSS_JORDAN:
+                    result = SPL.gaussJordanElimination(augmented);
+                    break;
+                case menuInput.METHOD_INVERSE:
+                    result = SPL.matriksInverseMethod(augmented);
+                    break;
+                case menuInput.METHOD_CRAMER:
+                    result = SPL.cramer(augmented);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + algorithm);
             }
-            System.out.println("");
+
+            menuOutput.showSPLDefinitonResult(result);
+        }catch (Exception e){
+            System.out.println(terminalColor.TEXT_RED +"Oopss..");
+            System.out.println("Terjadi Eksepsi saat melakukan pembacaan data. \n" + terminalColor.TEXT_RESET);
+            System.out.println("Detail Kesalahan: ");
+            System.out.println(e.getMessage());
+
+            System.out.print("\n**** Silahkan tekan enter untuk melanjutkan program ****");
+            try{
+                System.in.read();
+            }catch(Exception ignored){
+            }
         }
-        spl.eliminasiGaussJordan();
     }
 }

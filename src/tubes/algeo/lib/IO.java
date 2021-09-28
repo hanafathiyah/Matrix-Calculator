@@ -30,10 +30,13 @@ public class IO {
   }
 
   public static Node[] readFileNodes(String path) throws FileNotFoundException {
-    int nx, nNodes;
-
     Scanner stream = readFile(path);
-    return getNodes(stream, false);
+    return getNodes(stream, false, false);
+  }
+
+  public static Node[] readFileNodes1(String path) throws FileNotFoundException{
+    Scanner stream = readFile(path);
+    return getNodes(stream, false, true);
   }
 
   static FileWriter openWriteMode(String path) throws Exception {
@@ -81,28 +84,33 @@ public class IO {
     System.out.println(result.getPolynomialStr());
   }
 
-
-
   public static Matriks readMatrix(){
     Scanner stream = new Scanner(System.in);
     return getMatriks(stream, true);
   }
 
   public static Node[] readNodes(){
-    int nx, nNodes;
-
     Scanner stream = new Scanner(System.in);
-    return getNodes(stream, true);
+    return getNodes(stream, true, false);
   }
 
-  private static Node[] getNodes(Scanner stream, boolean showHint) {
+  public static Node[] readNodes1(){
+    Scanner stream = new Scanner(System.in);
+    return getNodes(stream, true, true);
+  }
+
+  private static Node[] getNodes(Scanner stream, boolean showHint, boolean oneVariable) {
     int nx;
     int nNodes;
 
-    if(showHint){
-      System.out.print("Masukkan jumlah variabel : ");
+    if(!oneVariable){
+      if(showHint){
+        System.out.print("Masukkan jumlah variabel : ");
+      }
+      nx = stream.nextInt();
+    }else{
+      nx = 1;
     }
-    nx = stream.nextInt();
 
     if(showHint){
       System.out.print("Masukkan jumlah data : ");

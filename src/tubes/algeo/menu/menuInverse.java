@@ -15,19 +15,10 @@ public class menuInverse {
                 "██ ██   ████   ████   ███████ ██   ██ ███████ ███████ \n" +
                 "                                                      \n" +
                 "                                                      \n"+ terminalColor.TEXT_RESET);
-        Matriks input = IO.readMatrix();
+        Matriks input = menuInput.getMatriks("Matriks Balikan", "Masukan matriks yang ingin dicari balikannya");
         if (input.isSquare()) {
             Matriks inverse = input.inverseByKofaktor();
-            System.out.println("Inverse matriks tersebut adalah");
-            for(int i = 0; i < inverse.getNRows(); i++) {
-                for(int j = 0; j < inverse.getNCols(); j++) {
-                    System.out.print(inverse.getElmt(i,j));
-                    if(j < inverse.getNCols() - 1) {
-                        System.out.print(" ");
-                    }
-                }
-                System.out.println("");
-            }
+            menuOutput.showMatriksResult(inverse);
         } else {
             System.out.println("Matriks harus persegi.");
         }

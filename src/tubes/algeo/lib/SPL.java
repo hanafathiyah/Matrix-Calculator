@@ -67,4 +67,10 @@ public class SPL {
     operasi.toSegitigaAtas();
     return new SPLResult(operasi, SPL.solutionChecker(operasi));
   }
+
+  public static SPLResult matriksInverseMethod(Matriks augmented){
+    Matriks koefisien = new Matriks(augmented.getNCols() -1, augmented.getNCols() -1);
+
+    return new SPLResult(koefisien, SPL.solutionChecker(koefisien));
+  }
 }

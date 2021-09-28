@@ -518,7 +518,7 @@ public class Matriks {
       for(int j = 0; j < this.getNCols(); j++){
         res.append(this.getElmt(i,j));
 
-        if(i < this.getNRows() - 1){
+        if(j < this.getNCols() - 1){
           res.append(" ");
         }
       }

@@ -6,17 +6,18 @@ import tubes.algeo.lib.type.Node;
 import tubes.algeo.lib.util.terminalColor;
 
 import java.io.IOException;
+import java.security.PublicKey;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class menuInput {
-    public static Matriks getMatriks(String operasi)  {
+    public static Matriks getMatriks(String operasi, String petunjuk)  {
         while(true){
             Scanner source = new Scanner(System.in);
             Scanner file = new Scanner(System.in);
 
             try{
-                int pilihan = ShowTitle(operasi);
+                int pilihan = ShowTitle(operasi, petunjuk);
                 if(pilihan < 1 || pilihan > 2){
                     System.out.println("** Pilihan yang tersedia hanya dari 1 sampai dengan 2 **");
                     System.out.print("**** Silahkan tekan enter untuk melanjutkan program ****");
@@ -67,11 +68,13 @@ public class menuInput {
         }
     }
 
-    private static int ShowTitle(String operasi) throws InputMismatchException {
+    private static int ShowTitle(String operasi, String petunjuk) throws InputMismatchException {
         System.out.println(" ");
         System.out.println("================================================================");
         System.out.println("****************************************************************");
         System.out.println("Operasi yang dipilih : " + operasi);
+        System.out.println("\nPetunjuk : ");
+        System.out.println(petunjuk);
         System.out.println("\nSilahkan pilih mode membaca data yg diinginkan:");
         System.out.println("1. Baca dari File");
         System.out.println("2. Baca dari Konsol");
@@ -83,7 +86,12 @@ public class menuInput {
         return source.nextInt();
     }
 
-    public int getMethod(String operasi){
+    public static final int METHOD_ELIMINASI_GAUSS = 1;
+    public static final int METHOD_ELIMINASI_GAUSS_JORDAN = 2;
+    public static final int METHOD_INVERSE = 3;
+    public static final int METHOD_CRAMER = 4;
+
+    public static int getMethod(String operasi){
         while(true){
             Scanner source = new Scanner(System.in);
 
@@ -139,13 +147,71 @@ public class menuInput {
         }
     }
 
-    public Node[] getNodes(String operasi){
+    public static Node[] getNodes1(String operasi, String petunjuk){
         while(true){
             Scanner source = new Scanner(System.in);
             Scanner file = new Scanner(System.in);
 
             try{
-                int pilihan = ShowTitle(operasi);
+                int pilihan = ShowTitle(operasi, petunjuk);
+                if(pilihan < 1 || pilihan > 2) {
+                    System.out.println("** Pilihan yang tersedia hanya dari 1 sampai dengan 2 **");
+                    System.out.print("**** Silahkan tekan enter untuk melanjutkan program ****");
+                    try{
+                        System.in.read();
+                    }catch(Exception ignored){
+                    }
+                }
+                else{
+                   Node[] res = {};
+
+                    switch (pilihan){
+                        case 1:{
+                            System.out.print("Masukkan path file input: ");
+                            String fileNama =  file.nextLine();
+                            res = IO.readFileNodes1(fileNama);
+                            break;
+                        }
+                        case 2:{
+                            res = IO.readNodes1();
+                            break;
+                        }
+                    }
+
+                    return res;
+                }
+            }
+            catch(InputMismatchException e){
+                source.next();
+                System.out.println("******* Masukan yang benar adalah sebuah angka *******");
+                System.out.print("**** Silahkan tekan enter untuk melanjutkan program ****");
+                try{
+                    System.in.read();
+                }catch(Exception ignored){
+                }
+            }
+            catch(Exception e){
+                System.out.println(terminalColor.TEXT_RED +"Oopss..");
+                System.out.println("Terjadi Eksepsi saat melakukan pembacaan data. \n" + terminalColor.TEXT_RESET);
+                System.out.println("Detail Kesalahan: ");
+                System.out.println(e.getMessage());
+
+                System.out.print("\n**** Silahkan tekan enter untuk melanjutkan program ****");
+                try{
+                    System.in.read();
+                }catch(Exception ignored){
+                }
+            }
+        }
+    }
+
+    public static Node[] getNodes(String operasi, String petunjuk){
+        while(true){
+            Scanner source = new Scanner(System.in);
+            Scanner file = new Scanner(System.in);
+
+            try{
+                int pilihan = ShowTitle(operasi, petunjuk);
                 if(pilihan < 1 || pilihan > 2) {
                     System.out.println("** Pilihan yang tersedia hanya dari 1 sampai dengan 2 **");
                     System.out.print("**** Silahkan tekan enter untuk melanjutkan program ****");
@@ -192,6 +258,54 @@ public class menuInput {
                 try{
                     System.in.read();
                 }catch(Exception ignored){
+                }
+            }
+        }
+    }
+
+    public static int pilihanOpsi(String[] pilihan, String petunjuk){
+        Scanner s = new Scanner(System.in);
+        System.out.println(petunjuk);
+        System.out.println();
+
+        for(int i = 0; i < pilihan.length; i++){
+            System.out.println((i + 1) + pilihan[i]);
+        }
+
+        while (true){
+            try{
+                int inputPilihan = s.nextInt();
+                if(inputPilihan < 1 || inputPilihan > pilihan.length) {
+                    System.out.println("** Pilihan yang tersedia hanya dari 1 s.d. " + pilihan.length + " **" );
+                    System.out.print("**** Silahkan tekan enter untuk melanjutkan program ****");
+                    try{
+                        System.in.read();
+                    }catch(Exception ignored){
+                    }
+                }
+                else{
+                    return inputPilihan;
+                }
+            }
+            catch(InputMismatchException e){
+                s.next();
+                System.out.println("******* Masukan yang benar adalah sebuah angka *******");
+                System.out.print("**** Silahkan tekan enter untuk melanjutkan program ****");
+                try{
+                    System.in.read();
+                }catch(Exception ignored){
+                }
+            }
+            catch(Exception e) {
+                System.out.println(terminalColor.TEXT_RED + "Oopss..");
+                System.out.println("Terjadi Eksepsi saat melakukan pembacaan data. \n" + terminalColor.TEXT_RESET);
+                System.out.println("Detail Kesalahan: ");
+                System.out.println(e.getMessage());
+
+                System.out.print("\n**** Silahkan tekan enter untuk melanjutkan program ****");
+                try {
+                    System.in.read();
+                } catch (Exception ignored) {
                 }
             }
         }

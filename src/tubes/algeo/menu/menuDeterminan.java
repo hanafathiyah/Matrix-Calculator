@@ -15,7 +15,7 @@ public class menuDeterminan {
                 "██   ██ ██         ██    ██      ██   ██ ██  ██  ██ ██ ██  ██ ██ ██   ██ ██  ██ ██ \n" +
                 "██████  ███████    ██    ███████ ██   ██ ██      ██ ██ ██   ████ ██   ██ ██   ████ \n" +
                 "                                                                                   \n" + terminalColor.TEXT_RESET);
-        Matriks input = menuInput.getMatriks("Determinan");
+        Matriks input = menuInput.getMatriks("Determinan", "Masukan matriks yang ingin dihitung determinannya");
         if (input.isSquare()) {
             double determinan = input.determinanByKofaktor();
             menuOutput.showResult((new Double(determinan)).toString());
