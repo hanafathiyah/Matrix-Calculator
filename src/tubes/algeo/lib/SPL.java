@@ -123,7 +123,19 @@ public class SPL {
     if (koefisien.isSquare() && koefisien.determinanByKofaktor() != 0) {
       Matriks inverse = koefisien.inverseByKofaktor();
       Matriks hasil = inverse.product(konstanta);
-      return new SPLResult(hasil, SPL.solutionChecker(hasil));
+      Matriks concatidentitashasil = new Matriks(augmented);
+      for(int i = 0; i < concatidentitashasil.getNRows(); i++) {
+        for(int j = 0; j < concatidentitashasil.getNCols(); j++) {
+          if(i == j) {
+            concatidentitashasil.setElmt(i,j,1);
+          } else if(j == concatidentitashasil.getNCols() - 1) {
+            concatidentitashasil.setElmt(i,j,hasil.getElmt(i,0));
+          } else {
+            concatidentitashasil.setElmt(i,j,0);
+          }
+        }
+      }
+      return new SPLResult(concatidentitashasil, SPL.solutionChecker(hasil));
     } else if(!koefisien.isSquare()) {
       throw new Exception("Jumlah persamaan tidak pas. Gunakan metode lain");
     } else {

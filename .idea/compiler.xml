@@ -7,8 +7,13 @@
         <sourceTestOutputDir name="bin/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="tubes-algeo1" />
-        <module name="Algeo01-20047" />
         <module name="tubes-algeo-1" />
+      </profile>
+      <profile name="Annotation profile for Algeo01-20047" enabled="true">
+        <sourceOutputDir name="bin/generated-sources/annotations" />
+        <sourceTestOutputDir name="bin/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Algeo01-20047" />
       </profile>
     </annotationProcessing>
   </component>
