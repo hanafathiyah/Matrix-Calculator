@@ -16,12 +16,13 @@ informatic engineering. this project consist of several features:
 * Bilinier Regression
 
 Note : All the features above can read and write test cases either in file or konsol.
-#The Process
+
+# The Process
 This Project was made under several conditions:
 * Using Java SE Runtime Environment (JDK 17 version and JRE)
 * Created using intelliJ idea (new version)
 
-#Project Structure
+# Project Structure
 
 
 ## How to build and run
