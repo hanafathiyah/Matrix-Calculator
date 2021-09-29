@@ -23,12 +23,12 @@ This Project was made under several conditions:
 * Created using intelliJ idea (new version)
 
 ## Folder Structure
-* github                 # contains workflow
-* idea                   # contains file xml (.xml)
-* bin                    # contains java byte code (.class)
-* docs                   # contains pdf file of this project (.pdf)
-* src/tubes/algeo        # contains source code (.java)
-* test/tubes/algeo       # contains file testing (.java)
+* github: contains workflow
+* idea: contains file xml (.xml)
+* bin: contains java byte code (.class)
+* docs: contains pdf file of this project (.pdf)
+* src/tubes/algeo: contains source code (.java)
+* test/tubes/algeo: contains file testing (.java)
 
 ## How to build and run
 Make sure you have installed maven in your computer.
