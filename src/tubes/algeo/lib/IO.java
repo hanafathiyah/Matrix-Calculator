@@ -1,8 +1,6 @@
 package tubes.algeo.lib;
 import tubes.algeo.lib.type.Node;
 import tubes.algeo.lib.type.Matriks;
-import tubes.algeo.lib.type.Polynomial;
-import tubes.algeo.lib.type.SPLResult;
 import tubes.algeo.lib.util.terminalColor;
 
 import java.io.*;
@@ -12,17 +10,6 @@ public class IO {
   public static Scanner readFile(String path) throws FileNotFoundException{
     File f = new File(path);
     return new Scanner(f);
-  }
-
-  public static String readFileText(String path) throws FileNotFoundException{
-    Scanner stream = IO.readFile(path);
-    String result = "";
-
-    while(stream.hasNextLine()){
-      result = result.concat(stream.nextLine());
-    }
-
-    return result;
   }
 
   public static Matriks readFileMatriks(String path) throws FileNotFoundException {
@@ -62,29 +49,6 @@ public class IO {
     w.write(text);
     w.close();
   }
-
-  public static void writeFileSPLResult(String path, SPLResult result) throws Exception {
-    FileWriter w = IO.openWriteMode(path);
-    String strResult = result.getStrResult();
-    w.write(strResult);
-    w.close();
-  }
-
-  public static void writeFilePolynomial(String path, Polynomial result) throws Exception {
-    FileWriter w = IO.openWriteMode(path);
-    String strResult = result.getPolynomialStr();
-    w.write(strResult);
-    w.close();
-  }
-
-  public static void writeText(String text){
-    System.out.println(text);
-  }
-
-  public static void writePolynomial(Polynomial result) throws Exception{
-    System.out.println(result.getPolynomialStr());
-  }
-
   public static Matriks readMatrix(){
     Scanner stream = new Scanner(System.in);
     return getMatriks(stream, true);

@@ -1,7 +1,6 @@
 package tubes.algeo.menu;
 import tubes.algeo.lib.Interpolasi;
 import tubes.algeo.lib.error.InterpolasiException;
-import tubes.algeo.lib.type.LinearFunction;
 import tubes.algeo.lib.type.Node;
 import tubes.algeo.lib.type.Polynomial;
 import tubes.algeo.lib.util.terminalColor;
