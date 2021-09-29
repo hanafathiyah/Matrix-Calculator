@@ -106,7 +106,7 @@ public class SPL {
   public static SPLResult cramer(Matriks augmented) throws Exception {
     Matriks coeff = getCoefficientMatriks(augmented);
 
-    if(coeff.isSquare() && coeff.determinanByKofaktor() != 0){
+    if(coeff.isSquare() && !floatingPoint.isEqual(coeff.determinanByKofaktor(), 0)){
       Matriks operasi = new Matriks(augmented);
       Matriks hasil = operasi.metodeCrammer();
       return new SPLResult(hasil, SPL.solutionChecker(hasil));
@@ -120,7 +120,7 @@ public class SPL {
   public static SPLResult matriksInverseMethod(Matriks augmented) throws Exception {
     Matriks koefisien = getCoefficientMatriks(augmented);
     Matriks konstanta = getConstantaMatriks(augmented);
-    if (koefisien.isSquare() && koefisien.determinanByKofaktor() != 0) {
+    if (koefisien.isSquare() && !floatingPoint.isEqual(koefisien.determinanByKofaktor(), 0)) {
       Matriks inverse = koefisien.inverseByKofaktor();
       Matriks hasil = inverse.product(konstanta);
       Matriks concatidentitashasil = new Matriks(augmented);
