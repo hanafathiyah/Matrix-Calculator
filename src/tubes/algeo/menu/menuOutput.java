@@ -21,15 +21,15 @@ public class menuOutput {
             try{
                 int pilihan;
                 System.out.println(" ");
-                System.out.println("Pilih mode menampilkan solusi:");
+                System.out.println(terminalColor.TEXT_YELLOW+"Pilih mode menampilkan solusi:"+terminalColor.TEXT_RESET);
                 System.out.println("1. Simpan pada File");
                 System.out.println("2. Tampilkan pada layar\n");
                 System.out.print("Masukkan pilihan Anda: ");
 
                 pilihan = source.nextInt();
                 if(pilihan < 1 || pilihan > 2){
-                    System.out.println("** Pilihan yang tersedia hanya dari 1 sampai dengan 2 **");
-                    System.out.print("**** Silahkan tekan enter untuk melanjutkan program ****");
+                    System.out.println(terminalColor.TEXT_BLUE+"** Pilihan yang tersedia hanya dari 1 sampai dengan 2 **");
+                    System.out.print("**** Silahkan tekan enter untuk melanjutkan program ****"+terminalColor.TEXT_RESET);
                     try{
                         System.in.read();
                     }catch(Exception ignored){
@@ -45,7 +45,7 @@ public class menuOutput {
                             break;
                         }
                         case 2:{
-                            System.out.println("\nSolusi :");
+                            System.out.println(terminalColor.TEXT_GREEN+"\nSolusi :"+terminalColor.TEXT_RESET);
                             System.out.println(str);
                             isFinished = true;
 
@@ -57,17 +57,17 @@ public class menuOutput {
             }
             catch(InputMismatchException e){
                 source.next();
-                System.out.println("******* Masukan yang benar adalah sebuah angka *******");
-                System.out.print("**** Silahkan tekan enter untuk melanjutkan program ****");
+                System.out.println(terminalColor.TEXT_RED+"******* Masukan yang benar adalah sebuah angka *******"+terminalColor.TEXT_RESET);
+                System.out.print(terminalColor.TEXT_CYAN+"**** Silahkan tekan enter untuk melanjutkan program ****"+terminalColor.TEXT_RESET);
                 try{
                     System.in.read();
                 }catch(Exception ignored){
                 }
             }
             catch(Exception e){
-                System.out.println(terminalColor.TEXT_RED +"Oopss..");
+                System.out.println(terminalColor.TEXT_RED +"Oopss.."+terminalColor.TEXT_RESET);
                 System.out.println("Terjadi Eksepsi saat melakukan pembacaan data. \n" + terminalColor.TEXT_RESET);
-                System.out.println("Detail Kesalahan: ");
+                System.out.println(terminalColor.TEXT_BLUE+"Detail Kesalahan: "+terminalColor.TEXT_RESET);
                 System.out.println(e.getMessage());
             }
         }

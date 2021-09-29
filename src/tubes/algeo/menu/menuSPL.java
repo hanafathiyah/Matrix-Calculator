@@ -21,11 +21,11 @@ public class menuSPL {
                 "╚══════╝╚═╝     ╚══════╝\n" +
                 "                        \n" + terminalColor.TEXT_RESET);
 
-        Matriks augmented = menuInput.getMatriks("Sistem Persamaan Linear",
+        Matriks augmented = menuInput.getMatriks(terminalColor.TEXT_GREEN+"Sistem Persamaan Linear"+terminalColor.TEXT_RESET,
                 "Masukkan matriks augmented yang diinginkan");
 
         try {
-            int algorithm = menuInput.getMethod("Sistem Persamaan Linear");
+            int algorithm = menuInput.getMethod(terminalColor.TEXT_CYAN+"Sistem Persamaan Linear"+terminalColor.TEXT_RESET);
             SPLResult result;
 
             switch (algorithm){
@@ -42,17 +42,18 @@ public class menuSPL {
                     result = SPL.cramer(augmented);
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + algorithm);
+                    throw new IllegalStateException(terminalColor.TEXT_RED+"Unexpected value: " + algorithm+terminalColor.TEXT_RESET);
             }
 
             menuOutput.showSPLDefinitonResult(result);
         }catch (Exception e){
-            System.out.println(terminalColor.TEXT_RED +"Oopss..");
+            System.out.println(terminalColor.TEXT_RED +"Oopss.."+terminalColor.TEXT_RESET);
             System.out.println("Terjadi Eksepsi saat melakukan pembacaan data. \n" + terminalColor.TEXT_RESET);
-            System.out.println("Detail Kesalahan: ");
+            System.out.println(terminalColor.TEXT_BLUE+"Detail Kesalahan: "+terminalColor.TEXT_RESET);
             System.out.println(e.getMessage());
 
-            System.out.print("\n**** Silahkan tekan enter untuk melanjutkan program ****");
+
+            System.out.print(terminalColor.TEXT_CYAN+"\n**** Silahkan tekan enter untuk melanjutkan program ****"+terminalColor.TEXT_RESET);
             try{
                 System.in.read();
             }catch(Exception ignored){

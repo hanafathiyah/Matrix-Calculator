@@ -22,15 +22,15 @@ public class menuInterpolasi {
                 "                                                                                  \n" +
                 "                                                                                  \n" + terminalColor.TEXT_RESET);
 
-        Node[] data = menuInput.getNodes1("Interpolasi", "Masukan data yang akan diinterpolasikan");
+        Node[] data = menuInput.getNodes1(terminalColor.TEXT_GREEN+"Interpolasi", "Masukan data yang akan diinterpolasikan"+terminalColor.TEXT_RESET);
 
         try{
             Polynomial pl = Interpolasi.getFunction(data);
 
             boolean done = false;
             while (!done){
-              String[] aksi = {"Menampilkan fungsi hasil interpolasi", "Menghitung prakiraan data", "Kembali ke menu utama"};
-              int pilihanAksi = menuInput.pilihanOpsi(aksi, "Masukan aksi yang ingin anda lakukan");
+              String[] aksi = {terminalColor.TEXT_CYAN+"Menampilkan fungsi hasil interpolasi", "Menghitung prakiraan data", "Kembali ke menu utama"+terminalColor.TEXT_RESET};
+              int pilihanAksi = menuInput.pilihanOpsi(aksi, "Masukan aksi yang ingin Anda lakukan");
 
               switch (pilihanAksi){
                 case 1:
@@ -46,12 +46,13 @@ public class menuInterpolasi {
             }
 
         }catch (InterpolasiException e){
-                System.out.println(terminalColor.TEXT_RED +"Oopss..");
-                System.out.println("Terjadi Kesalahan saat melakukan interpolasi. \n" + terminalColor.TEXT_RESET);
-                System.out.println("Detail Kesalahan: ");
-                System.out.println(e.getMessage());
+            System.out.println(terminalColor.TEXT_RED +"Oopss.."+terminalColor.TEXT_RESET);
+            System.out.println("Terjadi kesalahan saat melakukan interpolasi. \n" + terminalColor.TEXT_RESET);
+            System.out.println(terminalColor.TEXT_BLUE+"Detail Kesalahan: "+terminalColor.TEXT_RESET);
+            System.out.println(e.getMessage());
 
-                System.out.print("\n**** Silahkan tekan enter untuk melanjutkan program ****");
+
+            System.out.print(terminalColor.TEXT_CYAN+"\n**** Silahkan tekan enter untuk melanjutkan program ****"+terminalColor.TEXT_RESET);
                 try{
                     System.in.read();
                 }catch(Exception ignored){

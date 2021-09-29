@@ -21,7 +21,7 @@ public class menuRegresi {
                 "                                                    \n" +
                 "                                                    \n" + terminalColor.TEXT_RESET);
 
-        Node[] data = menuInput.getNodes("Regresi", "Masukan data yang akan dihitung regresinya");
+        Node[] data = menuInput.getNodes(terminalColor.TEXT_PURPLE+"Regresi", "Masukan data yang akan dihitung regresinya"+terminalColor.TEXT_RESET);
         try{
             LinearFunction lf = Regresi.getFunction(data);
 
@@ -44,12 +44,13 @@ public class menuRegresi {
             }
 
         }catch (RegresiException e){
-                System.out.println(terminalColor.TEXT_RED +"Oopss..");
-                System.out.println("Terjadi Kesalahan saat melakukan regresi. \n" + terminalColor.TEXT_RESET);
-                System.out.println("Detail Kesalahan: ");
-                System.out.println(e.getMessage());
+            System.out.println(terminalColor.TEXT_RED +"Oopss.."+terminalColor.TEXT_RESET);
+            System.out.println("Terjadi kesalahan saat melakukan regresi. \n" + terminalColor.TEXT_RESET);
+            System.out.println(terminalColor.TEXT_BLUE+"Detail Kesalahan: "+terminalColor.TEXT_RESET);
+            System.out.println(e.getMessage());
 
-                System.out.print("\n**** Silahkan tekan enter untuk melanjutkan program ****");
+
+            System.out.print(terminalColor.TEXT_CYAN+"\n**** Silahkan tekan enter untuk melanjutkan program ****"+terminalColor.TEXT_RESET);
                 try{
                     System.in.read();
                 }catch(Exception ignored){
@@ -72,12 +73,12 @@ public class menuRegresi {
         double res = lf.calculate(data);
         menuOutput.showResult((new Double(res)).toString());
       }catch (Exception e){
-          System.out.println(terminalColor.TEXT_RED +"Oopss..");
-          System.out.println("Terjadi Kesalahan saat melakukan perhitungan. \n" + terminalColor.TEXT_RESET);
-          System.out.println("Detail Kesalahan: ");
+          System.out.println(terminalColor.TEXT_RED +"Oopss.."+terminalColor.TEXT_RESET);
+          System.out.println("Terjadi kesalahan saat melakukan perhitungan. \n" + terminalColor.TEXT_RESET);
+          System.out.println(terminalColor.TEXT_BLUE+"Detail Kesalahan: "+terminalColor.TEXT_RESET);
           System.out.println(e.getMessage());
 
-          System.out.print("\n**** Silahkan tekan enter untuk melanjutkan program ****");
+          System.out.print(terminalColor.TEXT_CYAN+"\n**** Silahkan tekan enter untuk melanjutkan program ****"+terminalColor.TEXT_RESET);
           try{
               System.in.read();
           }catch(Exception ignored){
