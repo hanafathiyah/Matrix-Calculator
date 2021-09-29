@@ -7,7 +7,6 @@ import tubes.algeo.lib.SPL;
 import tubes.algeo.lib.type.Matriks;
 import tubes.algeo.lib.type.SPLResult;
 
-@Ignore
 public class InverseChecker {
   @Test
   public void oneSolutionTest(){
