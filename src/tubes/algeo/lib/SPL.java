@@ -38,6 +38,18 @@ public class SPL {
     return result;
   }
 
+  static Matriks getCoefficientMatriks(Matriks augmented){
+    Matriks result = new Matriks(augmented.getNRows(), augmented.getNCols()-1);
+
+    for(int i = 0; i < result.getNRows(); i++){
+      for(int j = 0; j < result.getNCols(); j++){
+        result.setElmt(i,j, augmented.getElmt(i,j));
+      }
+    }
+
+    return result;
+  }
+
   public static SPLResult gaussElimination(Matriks augmented){
     Matriks res = new Matriks(10,1);
     res.setElmt(0,1,1);
@@ -55,9 +67,17 @@ public class SPL {
   }
 
   public static SPLResult cramer(Matriks augmented) throws Exception {
-    Matriks operasi = new Matriks(augmented);
-    Matriks hasil = operasi.metodeCrammer();
-    return new SPLResult(hasil, SPL.solutionChecker(hasil));
+    Matriks coeff = getCoefficientMatriks(augmented);
+
+    if(coeff.isSquare() && coeff.determinanByKofaktor() != 0){
+      Matriks operasi = new Matriks(augmented);
+      Matriks hasil = operasi.metodeCrammer();
+      return new SPLResult(hasil, SPL.solutionChecker(hasil));
+    }else if(!coeff.isSquare()){
+      throw new Exception("Jumlah persamaan tidak pas. Gunakan metode lain");
+    }else{
+      throw new Exception("Determinan memiliki nilai 0. Gunakan metode lain");
+    }
   }
 
   public static SPLResult matriksInverseMethod(Matriks augmented){
