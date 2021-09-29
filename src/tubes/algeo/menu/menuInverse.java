@@ -16,12 +16,6 @@ public class menuInverse {
                 "                                                      \n" +
                 "                                                      \n"+ terminalColor.TEXT_RESET);
         Matriks input = menuInput.getMatriks("Matriks Balikan", "Masukan matriks yang ingin dicari balikannya");
-        if (input.isSquare()) {
-            Matriks inverse = input.inverseByKofaktor();
-            menuOutput.showMatriksResult(inverse);
-        } else {
-            System.out.println("Matriks harus persegi.");
-        }
 
         if (input.isSquare()) {
             String[] metode = {"Metode OBE", "Metode Kofaktor"};
