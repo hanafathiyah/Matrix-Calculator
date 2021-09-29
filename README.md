@@ -15,11 +15,12 @@ informatic engineering. this project consist of several features:
 * Polynomial Interpolation
 * Bilinier Regression
 
-Note : All the features above can read and write test cases either in file or konsol.
+Note : All the features above can read and write test cases either in file or console.
 
 ## The Process
 This Project was made under several conditions:
 * Using Java SE Runtime Environment (JDK 17 version and JRE)
+* Using Maven 3.8.2 to automate build the program
 * Created using intelliJ idea (new version)
 
 ## Folder Structure
@@ -31,7 +32,7 @@ This Project was made under several conditions:
 * test/tubes/algeo: contains file testing (.java)
 
 ## How to build and run
-Make sure you have installed maven in your computer.
+Make sure you have installed maven and JDK in your computer.
 
 After that, to run this app, please run:
 ```shell
