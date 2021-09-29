@@ -56,9 +56,8 @@ public class SPL {
 
   public static SPLResult cramer(Matriks augmented) throws Exception {
     Matriks operasi = new Matriks(augmented);
-    operasi.metodeCrammer();
-    operasi.toSegitigaAtas();
-    return new SPLResult(operasi, SPL.solutionChecker(operasi));
+    Matriks hasil = operasi.metodeCrammer();
+    return new SPLResult(hasil, SPL.solutionChecker(hasil));
   }
 
   public static SPLResult matriksInverseMethod(Matriks augmented){
