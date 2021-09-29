@@ -20,12 +20,10 @@ public class menuInverse {
         if (input.isSquare()) {
             String[] metode = {"Metode OBE", "Metode Kofaktor"};
             Matriks inverse;
-
-            int pilihan = menuInput.pilihanOpsi(metode, "Pilih metode perhitungan yang diinginkan");
-
             if (input.determinanByKofaktor() == 0) {
                 System.out.println("Invers matriks tidak ada karena nilai determinan matriks sama dengan nol");
             } else {
+                int pilihan = menuInput.pilihanOpsi(metode, "Pilih metode perhitungan yang diinginkan");
                 switch (pilihan){
                     case 1:
                         inverse = input.inverseByAugmented();
