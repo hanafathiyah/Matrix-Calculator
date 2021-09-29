@@ -16,30 +16,26 @@ public class menuInverse {
                 "                                                      \n" +
                 "                                                      \n"+ terminalColor.TEXT_RESET);
         Matriks input = menuInput.getMatriks("Matriks Balikan", "Masukan matriks yang ingin dicari balikannya");
-        if (input.isSquare()) {
-            Matriks inverse = input.inverseByKofaktor();
-            menuOutput.showMatriksResult(inverse);
-        } else {
-            System.out.println("Matriks harus persegi.");
-        }
 
         if (input.isSquare()) {
             String[] metode = {"Metode OBE", "Metode Kofaktor"};
             Matriks inverse;
-
-            int pilihan = menuInput.pilihanOpsi(metode, "Pilih metode perhitungan yang diinginkan");
-            switch (pilihan){
-                case 1:
-                    inverse = input.inverseByAugmented();
-                    break;
-                case 2:
-                    inverse = input.inverseByKofaktor();
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + pilihan);
+            if (input.determinanByKofaktor() == 0) {
+                System.out.println("Invers matriks tidak ada karena nilai determinan matriks sama dengan nol");
+            } else {
+                int pilihan = menuInput.pilihanOpsi(metode, "Pilih metode perhitungan yang diinginkan");
+                switch (pilihan){
+                    case 1:
+                        inverse = input.inverseByAugmented();
+                        break;
+                    case 2:
+                        inverse = input.inverseByKofaktor();
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + pilihan);
+                }
+                menuOutput.showMatriksResult(inverse);
             }
-
-            menuOutput.showMatriksResult(inverse);
         } else {
             System.out.println("Matriks haruslah berupa matriks persegi.");
         }
