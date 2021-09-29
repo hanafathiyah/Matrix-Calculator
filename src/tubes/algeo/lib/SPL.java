@@ -79,6 +79,14 @@ public class SPL {
     return result;
   }
 
+  static Matriks getConstantaMatriks(Matriks augmented){
+    Matriks result = new Matriks(augmented.getNRows(), 1);
+    for(int i = 0; i < result.getNRows(); i++){
+      result.setElmt(i,0, (augmented.getNCols() - 1));
+    }
+    return result;
+  }
+
   public static SPLResult gaussElimination(Matriks augmented){
     Matriks data = new Matriks(augmented);
     data.eliminasiGauss();
@@ -109,9 +117,29 @@ public class SPL {
     }
   }
 
-  public static SPLResult matriksInverseMethod(Matriks augmented){
-    Matriks koefisien = new Matriks(augmented.getNCols() -1, augmented.getNCols() -1);
-
-    return new SPLResult(koefisien, SPL.solutionChecker(koefisien));
+  public static SPLResult matriksInverseMethod(Matriks augmented) throws Exception {
+    Matriks koefisien = getCoefficientMatriks(augmented);
+    Matriks konstanta = getConstantaMatriks(augmented);
+    if (koefisien.isSquare() && koefisien.determinanByKofaktor() != 0) {
+      Matriks inverse = koefisien.inverseByKofaktor();
+      Matriks hasil = inverse.product(konstanta);
+      Matriks concatidentitashasil = new Matriks(augmented);
+      for(int i = 0; i < concatidentitashasil.getNRows(); i++) {
+        for(int j = 0; j < concatidentitashasil.getNCols(); j++) {
+          if(i == j) {
+            concatidentitashasil.setElmt(i,j,1);
+          } else if(j == concatidentitashasil.getNCols() - 1) {
+            concatidentitashasil.setElmt(i,j,hasil.getElmt(i,0));
+          } else {
+            concatidentitashasil.setElmt(i,j,0);
+          }
+        }
+      }
+      return new SPLResult(concatidentitashasil, SPL.solutionChecker(hasil));
+    } else if(!koefisien.isSquare()) {
+      throw new Exception("Jumlah persamaan tidak pas. Gunakan metode lain");
+    } else {
+      throw new Exception("Determinan memiliki nilai 0. Gunakan metode lain");
+    }
   }
 }
