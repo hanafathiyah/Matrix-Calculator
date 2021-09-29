@@ -265,15 +265,19 @@ public class menuInput {
 
     public static int pilihanOpsi(String[] pilihan, String petunjuk){
         Scanner s = new Scanner(System.in);
-        System.out.println(petunjuk);
-        System.out.println();
-
-        for(int i = 0; i < pilihan.length; i++){
-            System.out.println((i + 1) + pilihan[i]);
-        }
-
         while (true){
             try{
+                System.out.println("\n================================================================");
+                System.out.println("****************************************************************");
+                System.out.println(petunjuk);
+                System.out.println();
+
+                for(int i = 0; i < pilihan.length; i++){
+                    System.out.println((i + 1) + ". " + pilihan[i]);
+                }
+
+                System.out.print("Pilihan : ");
+
                 int inputPilihan = s.nextInt();
                 if(inputPilihan < 1 || inputPilihan > pilihan.length) {
                     System.out.println("** Pilihan yang tersedia hanya dari 1 s.d. " + pilihan.length + " **" );
