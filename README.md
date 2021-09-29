@@ -25,7 +25,7 @@ This Project was made under several conditions:
 # Project Structure
 
 
-## How to build and run
+# How to build and run
 Make sure you have installed maven in your computer.
 
 After that, to run this app, please run:
