@@ -152,7 +152,7 @@ public class MatriksTest {
     Matriks m2 = matriksBuilderHelper(data2);
     Matriks mres = matriksBuilderHelper(res);
 
-    Matriks actualRes = m1.dotProduct(m2);
+    Matriks actualRes = m1.product(m2);
     testKesamaanMatriks(mres, actualRes);
   }
 

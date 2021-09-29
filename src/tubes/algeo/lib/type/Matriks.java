@@ -278,66 +278,20 @@ public class Matriks {
     }
   }
 
-  public void product(Matriks m) {
-    //matriks kali biasa
-    int nRows = this.nCols;
-    int nCols = this.nRows;
-    double[][] tmpMatrix = new double[nRows][nCols];
-    for (int row = 0; row < nRows; row++) {
-      for (int col = 0; col < nCols; col++) {
-        tmpMatrix[row][col] = this.matrix[col][row];
-      }
-    }
-    this.matrix = new double[nRows][nCols];
-    this.nRows = nRows;
-    this.nCols = nCols;
-    //copy tmpMatrix to class's matrix
-    for (int row = 0; row < nRows; row++) {
-      for (int col = 0; col < nCols; col++) {
-        this.matrix[row][col] = tmpMatrix[row][col];
-      }
-    }
-  }
-
-  public Matriks produk(Matriks m) throws Exception {
-
-    int nRows = this.nRows;
-    int nCols = this.nCols;
-    if (m.getNRows() == this.nRows && m.getNCols() == this.nCols) {
-      Matriks result = new Matriks(nRows, m.nCols);
-
-      for (int row = 0; row < nRows; row++) {
-        for (int col = 0; col < nCols; col++) {
-          result.matrix[row][col] = this.matrix[col][row];
-        }
-      }
-
-      for (int row = 0; row < nRows; row++) {
-        for (int col = 0; col < nCols; col++) {
-          this.matrix[row][col] = result.matrix[row][col];
-        }
-
-      }
-      return result;
-    } else {
-      throw new Exception("Jumlah baris dan kolom pada matriks tidak sama");
-    }
-  }
-
-  public Matriks dotProduct(Matriks m) {
+  public Matriks product(Matriks m) {
     //perkalian dot matrix dengan sisi kanannya
     //assume origin matrix has right dimension
     int nRow = this.nRows;
     int nCol = this.nCols;
-    Matriks dotResult = new Matriks(nRow, m.nCols);
+    Matriks result = new Matriks(nRow, m.nCols);
     for (int row = 0; row < nRow; row++) {
-      for (int col = 0; col < dotResult.nCols; col++) {
+      for (int col = 0; col < result.nCols; col++) {
         for (int tmpCol = 0; tmpCol < nCol; tmpCol++) {
-          dotResult.matrix[row][col] += this.matrix[row][tmpCol] * m.matrix[tmpCol][col];
+          result.matrix[row][col] += this.matrix[row][tmpCol] * m.matrix[tmpCol][col];
         }
       }
     }
-    return dotResult;
+    return result;
   }
 
   //Determinan
