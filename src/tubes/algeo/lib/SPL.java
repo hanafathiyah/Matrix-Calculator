@@ -82,7 +82,7 @@ public class SPL {
   static Matriks getConstantaMatriks(Matriks augmented){
     Matriks result = new Matriks(augmented.getNRows(), 1);
     for(int i = 0; i < result.getNRows(); i++){
-      result.setElmt(i,0, (augmented.getNCols() - 1));
+      result.setElmt(i,0, augmented.getElmt(i, augmented.getNCols() - 1 ));
     }
     return result;
   }
@@ -135,7 +135,7 @@ public class SPL {
           }
         }
       }
-      return new SPLResult(concatidentitashasil, SPL.solutionChecker(hasil));
+      return new SPLResult(concatidentitashasil, SPL.solutionChecker(concatidentitashasil));
     } else if(!koefisien.isSquare()) {
       throw new Exception("Jumlah persamaan tidak pas. Gunakan metode lain");
     } else {
