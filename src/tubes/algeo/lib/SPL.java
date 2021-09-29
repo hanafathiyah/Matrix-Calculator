@@ -113,7 +113,7 @@ public class SPL {
     Matriks koefisien = getCoefficientMatriks(augmented);
     if (koefisien.isSquare() && koefisien.determinanByKofaktor() != 0) {
       Matriks hasil = koefisien.inverseByKofaktor();
-      hasil.product(augmented);
+      hasil.product(koefisien);
       return new SPLResult(hasil, SPL.solutionChecker(hasil));
     } else if(!koefisien.isSquare()) {
       throw new Exception("Jumlah persamaan tidak pas. Gunakan metode lain");
