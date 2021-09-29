@@ -34,16 +34,20 @@ public class Polynomial {
       if(i == 0){
         result.append(this.constant[i]);
       }else if(i == 1){
-        result.append(this.constant[i]);
+        result.append(Math.abs(this.constant[i]));
         result.append("*x");
       }else{
-        result.append(this.constant[i]);
+        result.append(Math.abs(this.constant[i]));
         result.append("*x^");
         result.append(i);
       }
 
       if(i < this.constant.length - 1){
-        result.append(" + ");
+        if(this.constant[i+1] < 0){
+          result.append(" - ");
+        }else{
+          result.append(" + ");
+        }
       }
     }
 
