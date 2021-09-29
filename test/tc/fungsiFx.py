@@ -13,7 +13,7 @@ i = 0
 def func(x):
     return (x ** 2 + math.sqrt(x))/(math.exp(x)+x)
 
-while(i <= 2):
+while(i - 2 <= 1e-9):
     f.write(f"{i} {func(i)}\n")
     i += step
 
