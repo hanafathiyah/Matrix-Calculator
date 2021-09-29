@@ -109,9 +109,16 @@ public class SPL {
     }
   }
 
-  public static SPLResult matriksInverseMethod(Matriks augmented){
-    Matriks koefisien = new Matriks(augmented.getNCols() -1, augmented.getNCols() -1);
-
-    return new SPLResult(koefisien, SPL.solutionChecker(koefisien));
+  public static SPLResult matriksInverseMethod(Matriks augmented) throws Exception {
+    Matriks koefisien = getCoefficientMatriks(augmented);
+    if (koefisien.isSquare() && koefisien.determinanByKofaktor() != 0) {
+      Matriks hasil = koefisien.inverseByKofaktor();
+      hasil.product(augmented);
+      return new SPLResult(hasil, SPL.solutionChecker(hasil));
+    } else if(!koefisien.isSquare()) {
+      throw new Exception("Jumlah persamaan tidak pas. Gunakan metode lain");
+    } else {
+      throw new Exception("Determinan memiliki nilai 0. Gunakan metode lain");
+    }
   }
 }
