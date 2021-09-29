@@ -21,7 +21,7 @@ public class menuDeterminan {
             String[] metode = {terminalColor.TEXT_BLUE+"Metode Reduksi Baris", "Metode Kofaktor"+terminalColor.TEXT_RESET};
             double determinan;
 
-            int pilihan = menuInput.pilihanOpsi(metode, terminalColor.TEXT_RED+ "Pilih metode perhitungan yang diinginkan" + terminalColor.TEXT_RESET);
+            int pilihan = menuInput.pilihanOpsi(metode, "Pilih metode perhitungan yang diinginkan" + terminalColor.TEXT_RESET);
             switch (pilihan){
                 case 1:
                     determinan = input.determinanByReduksi();

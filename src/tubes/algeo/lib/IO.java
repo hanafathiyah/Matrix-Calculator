@@ -33,7 +33,7 @@ public class IO {
 
     if(!f.exists()){
       if(!f.createNewFile()){
-        throw new Exception("Gagal membuat file");
+        throw new Exception(terminalColor.TEXT_RED+"Gagal membuat file"+terminalColor.TEXT_RESET);
       }else{
         writer = new FileWriter(path);
       }
@@ -137,8 +137,8 @@ public class IO {
     Matriks result = new Matriks(nrows, ncolumns);
 
     if(showHints){
-      System.out.println("\n*** Mengambil data matriks ***");
-      System.out.printf("Silahkan masukan matriks anda [%d x %d] :\n", nrows, ncolumns);
+      System.out.println(terminalColor.TEXT_YELLOW+"\n*** Mengambil data matriks ***"+terminalColor.TEXT_RESET);
+      System.out.printf(terminalColor.TEXT_CYAN+"Silahkan masukan matriks anda [%d x %d] :\n"+ terminalColor.TEXT_RESET, nrows, ncolumns);
     }
 
     for(int i = 0; i < nrows; i++){
