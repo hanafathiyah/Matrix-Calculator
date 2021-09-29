@@ -38,11 +38,6 @@ public class SPL {
     return result;
   }
 
-  private static Matriks getSquareMatriks(Matriks augmented){
-    Matriks res = new Matriks(augmented.getNCols() - 1, augmented.getNCols() - 1);
-    return res;
-  }
-
   public static SPLResult gaussElimination(Matriks augmented){
     Matriks res = new Matriks(10,1);
     res.setElmt(0,1,1);
@@ -55,13 +50,6 @@ public class SPL {
   public static SPLResult gaussJordanElimination(Matriks augmented){
     Matriks operasi = new Matriks(augmented);
     operasi.eliminasiGaussJordan();
-
-    return new SPLResult(operasi, SPL.solutionChecker(operasi));
-  }
-
-  public static SPLResult kofaktorMethod(Matriks augmented){
-    Matriks operasi = new Matriks(augmented);
-    operasi.kofaktor();
 
     return new SPLResult(operasi, SPL.solutionChecker(operasi));
   }
