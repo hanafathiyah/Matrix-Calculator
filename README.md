@@ -5,7 +5,7 @@ This is our first project that maintained by 3 people :
 * Bayu Samudra - 13520128
 * Febryola Kurnia Putri - 13520140
 
-# What is This Project About?
+## What is This Project About?
 we made this project in order to fill the requirements of Linear and Geometric Algebra class in ITB
 informatic engineering. this project consist of several features:
 
@@ -17,14 +17,20 @@ informatic engineering. this project consist of several features:
 
 Note : All the features above can read and write test cases either in file or konsol.
 
-# The Process
+## The Process
 This Project was made under several conditions:
 * Using Java SE Runtime Environment (JDK 17 version and JRE)
 * Created using intelliJ idea (new version)
 
-# Project Structure
+## Folder Structure
+* github                 # contains workflow
+* idea                   # contains file xml (.xml)
+* bin                    # contains java byte code (.class)
+* docs                   # contains pdf file of this project (.pdf)
+* src/tubes/algeo        # contains source code (.java)
+* test/tubes/algeo       # contains file testing (.java)
 
-# How to build and run
+## How to build and run
 Make sure you have installed maven in your computer.
 
 After that, to run this app, please run:
