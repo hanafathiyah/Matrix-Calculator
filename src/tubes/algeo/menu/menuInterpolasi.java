@@ -23,7 +23,7 @@ public class menuInterpolasi {
                 "                                                                                  \n" +
                 "                                                                                  \n" + terminalColor.TEXT_RESET);
 
-        Node[] data = menuInput.getNodes("Interpolasi", "Masukan data yang akan diinterpolasikan");
+        Node[] data = menuInput.getNodes1("Interpolasi", "Masukan data yang akan diinterpolasikan");
 
         try{
             Polynomial pl = Interpolasi.getFunction(data);

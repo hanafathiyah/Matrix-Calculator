@@ -3,6 +3,7 @@ import tubes.algeo.lib.type.Node;
 import tubes.algeo.lib.type.Matriks;
 import tubes.algeo.lib.type.Polynomial;
 import tubes.algeo.lib.type.SPLResult;
+import tubes.algeo.lib.util.terminalColor;
 
 import java.io.*;
 import java.util.Scanner;
@@ -122,20 +123,23 @@ public class IO {
     for(int i = 0; i < nNodes; i++){
       if(showHint){
         System.out.println("\n====");
-        System.out.print("Data ke-");
+        System.out.print(terminalColor.TEXT_BLUE + "Data ke-");
         System.out.println(i+1);
-        System.out.println();
       }
 
       double[] xdata = new double[nx];
 
       if(showHint){
-        System.out.println();
+        System.out.println(terminalColor.TEXT_RESET);
       }
 
       for(int j = 0; j < nx; j++){
         if(showHint){
-          System.out.printf("Masukkan parameter ke-%d [x_%d] : ", j, j);
+          if(oneVariable){
+            System.out.print("Masukkan parameter [x] : ");
+          }else{
+            System.out.printf("Masukkan parameter ke-%d [x_%d] : ", j+1, j);
+          }
         }
         xdata[j] = stream.nextDouble();
       }
