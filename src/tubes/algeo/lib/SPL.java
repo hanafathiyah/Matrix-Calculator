@@ -38,6 +38,35 @@ public class SPL {
     return result;
   }
 
+  static Matriks backwardSubstitution(Matriks eselon){
+    int lastRow = -1, i = 0, j = 0;
+    while (i < eselon.getNCols() && j < eselon.getNRows()){
+      if(floatingPoint.isEqual(eselon.getElmt(i,j),1)){
+        lastRow = i;
+        i++;
+      }
+
+      j++;
+    }
+
+    for(i = lastRow; i >= 0; i--){
+      boolean found = false;
+      for(j = 0; j < eselon.getNRows() && !found; j++){
+        if(floatingPoint.isEqual(eselon.getElmt(i,j),1)){
+          found = true;
+        }
+      }
+
+      j--;
+
+      for(int k = i-1; k >= 0; k--){
+        eselon.addRowToRow(i,k,-(eselon.getElmt(k,j)));
+      }
+    }
+
+    return eselon;
+  }
+
   static Matriks getCoefficientMatriks(Matriks augmented){
     Matriks result = new Matriks(augmented.getNRows(), augmented.getNCols()-1);
 
@@ -51,12 +80,12 @@ public class SPL {
   }
 
   public static SPLResult gaussElimination(Matriks augmented){
-    Matriks res = new Matriks(10,1);
-    res.setElmt(0,1,1);
-    res.setElmt(1,1,10);
-    res.setElmt(2,1,9);
+    Matriks data = new Matriks(augmented);
+    data.eliminasiGauss();
 
-    return new SPLResult(res, SPLResult.RESULT_ONE_SOLUTION);
+    Matriks res = backwardSubstitution(data);
+
+    return new SPLResult(res, SPL.solutionChecker(res));
   }
 
   public static SPLResult gaussJordanElimination(Matriks augmented){

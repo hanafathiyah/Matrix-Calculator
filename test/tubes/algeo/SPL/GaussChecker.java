@@ -17,9 +17,9 @@ public class GaussChecker {
     Matriks mat1 = Helper.matriksBuilderHelper(m1);
     Matriks mat2 = Helper.matriksBuilderHelper(m2);
 
-    SPLResult h0 = SPL.gaussJordanElimination(mat0);
-    SPLResult h1 = SPL.gaussJordanElimination(mat1);
-    SPLResult h2 = SPL.gaussJordanElimination(mat2);
+    SPLResult h0 = SPL.gaussElimination(mat0);
+    SPLResult h1 = SPL.gaussElimination(mat1);
+    SPLResult h2 = SPL.gaussElimination(mat2);
 
     Assert.assertTrue(h0.isOneSolution());
     Assert.assertTrue(h1.isOneSolution());
@@ -42,10 +42,10 @@ public class GaussChecker {
     Matriks mat3 = Helper.matriksBuilderHelper(m3);
     Matriks mat4 = Helper.matriksBuilderHelper(m4);
 
-    SPLResult h1 = SPL.gaussJordanElimination(mat1);
-    SPLResult h2 = SPL.gaussJordanElimination(mat2);
-    SPLResult h3 = SPL.gaussJordanElimination(mat3);
-    SPLResult h4 = SPL.gaussJordanElimination(mat4);
+    SPLResult h1 = SPL.gaussElimination(mat1);
+    SPLResult h2 = SPL.gaussElimination(mat2);
+    SPLResult h3 = SPL.gaussElimination(mat3);
+    SPLResult h4 = SPL.gaussElimination(mat4);
 
     Assert.assertTrue(h1.isNoSolution());
     Assert.assertTrue(h2.isNoSolution());
@@ -68,11 +68,11 @@ public class GaussChecker {
     Matriks mat5 = Helper.matriksBuilderHelper(m5);
 
 
-    SPLResult h1 = SPL.gaussJordanElimination(mat1);
-    SPLResult h2 = SPL.gaussJordanElimination(mat2);
-    SPLResult h3 = SPL.gaussJordanElimination(mat3);
-    SPLResult h4 = SPL.gaussJordanElimination(mat4);
-    SPLResult h5 = SPL.gaussJordanElimination(mat5);
+    SPLResult h1 = SPL.gaussElimination(mat1);
+    SPLResult h2 = SPL.gaussElimination(mat2);
+    SPLResult h3 = SPL.gaussElimination(mat3);
+    SPLResult h4 = SPL.gaussElimination(mat4);
+    SPLResult h5 = SPL.gaussElimination(mat5);
 
     Assert.assertTrue(h1.isManySolution());
     Assert.assertTrue(h2.isManySolution());
