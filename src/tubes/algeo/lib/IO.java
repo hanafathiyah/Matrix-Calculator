@@ -125,10 +125,8 @@ public class IO {
         System.out.print("Data ke-");
         System.out.println(i+1);
         System.out.println();
-        System.out.print("Masukkan hasil [y] : ");
       }
 
-      double y = stream.nextDouble();
       double[] xdata = new double[nx];
 
       if(showHint){
@@ -137,10 +135,16 @@ public class IO {
 
       for(int j = 0; j < nx; j++){
         if(showHint){
-          System.out.printf("Masukkan parameter ke-%d [x%d] : ", j, j);
+          System.out.printf("Masukkan parameter ke-%d [x_%d] : ", j, j);
         }
         xdata[j] = stream.nextDouble();
       }
+
+      if(showHint){
+        System.out.print("Masukkan hasil [y] : ");
+      }
+
+      double y = stream.nextDouble();
 
       result[i] = new Node(xdata, y);
     }
