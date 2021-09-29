@@ -38,8 +38,11 @@ public class menuInverse {
                 default:
                     throw new IllegalStateException("Unexpected value: " + pilihan);
             }
-
-            menuOutput.showMatriksResult(inverse);
+            if (input.determinanByKofaktor() == 0) {
+                System.out.println("Invers matriks tidak ada karena nilai determinan matriks sama dengan nol");
+            } else {
+                menuOutput.showMatriksResult(inverse);
+            }
         } else {
             System.out.println("Matriks haruslah berupa matriks persegi.");
         }
