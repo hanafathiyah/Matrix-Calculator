@@ -22,5 +22,27 @@ public class menuInverse {
         } else {
             System.out.println("Matriks harus persegi.");
         }
+
+        if (input.isSquare()) {
+            String[] metode = {"Metode OBE", "Metode Kofaktor"};
+            Matriks inverse;
+
+            int pilihan = menuInput.pilihanOpsi(metode, "Pilih metode perhitungan yang diinginkan");
+            switch (pilihan){
+                case 1:
+                    inverse = input.inverseByAugmented();
+                    break;
+                case 2:
+                    inverse = input.inverseByKofaktor();
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + pilihan);
+            }
+
+            menuOutput.showMatriksResult(inverse);
+        } else {
+            System.out.println("Matriks haruslah berupa matriks persegi.");
+        }
+
     }
 }
