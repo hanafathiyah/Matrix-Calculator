@@ -50,14 +50,16 @@ public class SPL {
     }
 
     for(i = lastRow; i >= 0; i--){
-      for(j = 0; j < eselon.getNRows(); j++){
+      int col = -1;
+      for(j = 0; j < eselon.getNCols(); j++){
         if(floatingPoint.isEqual(eselon.getElmt(i,j),1)){
+          col = j;
           break;
         }
       }
 
       for(int k = i-1; k >= 0; k--){
-        eselon.addRowToRow(i,k,-(eselon.getElmt(k,j)));
+        eselon.addRowToRow(i,k,-(eselon.getElmt(k,col)));
       }
     }
 
