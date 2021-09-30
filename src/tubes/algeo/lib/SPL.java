@@ -40,7 +40,7 @@ public class SPL {
 
   static Matriks backwardSubstitution(Matriks eselon){
     int lastRow = -1, i = 0, j = 0;
-    while (i < eselon.getNCols() && j < eselon.getNRows()){
+    while (j < eselon.getNCols() && i < eselon.getNRows()){
       if(floatingPoint.isEqual(eselon.getElmt(i,j),1)){
         lastRow = i;
         i++;
@@ -50,14 +50,11 @@ public class SPL {
     }
 
     for(i = lastRow; i >= 0; i--){
-      boolean found = false;
-      for(j = 0; j < eselon.getNRows() && !found; j++){
+      for(j = 0; j < eselon.getNRows(); j++){
         if(floatingPoint.isEqual(eselon.getElmt(i,j),1)){
-          found = true;
+          break;
         }
       }
-
-      j--;
 
       for(int k = i-1; k >= 0; k--){
         eselon.addRowToRow(i,k,-(eselon.getElmt(k,j)));
