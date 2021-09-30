@@ -60,12 +60,14 @@ public class GaussChecker {
     double[][] m3 = {{1,1,1,3}};
     double[][] m4 = {{1,1,1,3},{3,2,1,6},{2,2,2,6},{6,4,2,12}};
     double[][] m5 = {{0,0,3,6},{2,1,0,3}};
+    double[][] m6 = {{0,1,0,0,1,0,2},{0,0,0,1,1,0,-1},{0,1,0,0,0,1,1}};
 
     Matriks mat1 = Helper.matriksBuilderHelper(m1);
     Matriks mat2 = Helper.matriksBuilderHelper(m2);
     Matriks mat3 = Helper.matriksBuilderHelper(m3);
     Matriks mat4 = Helper.matriksBuilderHelper(m4);
     Matriks mat5 = Helper.matriksBuilderHelper(m5);
+    Matriks mat6 = Helper.matriksBuilderHelper(m6);
 
 
     SPLResult h1 = SPL.gaussElimination(mat1);
@@ -73,17 +75,20 @@ public class GaussChecker {
     SPLResult h3 = SPL.gaussElimination(mat3);
     SPLResult h4 = SPL.gaussElimination(mat4);
     SPLResult h5 = SPL.gaussElimination(mat5);
+    SPLResult h6 = SPL.gaussElimination(mat6);
 
     Assert.assertTrue(h1.isManySolution());
     Assert.assertTrue(h2.isManySolution());
     Assert.assertTrue(h3.isManySolution());
     Assert.assertTrue(h4.isManySolution());
     Assert.assertTrue(h5.isManySolution());
+    Assert.assertTrue(h6.isManySolution());
 
     Assert.assertEquals("x_1 = r_2; x_2 = 3.0 - 2.0*r_2; x_3 = r_2", h1.getStrResult());
     Assert.assertEquals("x_1 = 2.0 - r_2; x_2 = 5.0 + 2.0*r_2; x_3 = r_2", h2.getStrResult());
     Assert.assertEquals("x_1 = 3.0 - r_1 - r_2; x_2 = r_1; x_3 = r_2", h3.getStrResult());
     Assert.assertEquals("x_1 = r_2; x_2 = 3.0 - 2.0*r_2; x_3 = r_2", h4.getStrResult());
     Assert.assertEquals("x_1 = 1.5 - 0.5*r_1; x_2 = r_1; x_3 = 2.0", h5.getStrResult());
+    Assert.assertEquals("x_1 = r_0; x_2 = 1.0 - r_5; x_3 = r_2; x_4 = -2.0 - r_5; x_5 = 1.0 + r_5; x_6 = r_5", h6.getStrResult());
   }
 }
