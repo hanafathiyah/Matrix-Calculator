@@ -38,7 +38,7 @@ jobs:
         run: |
           mv bin/classes/tubes tmp
           mv bin/tubes-algeo.jar .
-          rm -r
+          rm -r bin/
           mvn --batch-mode clean
           mkdir bin
           mv tmp bin/tubes
