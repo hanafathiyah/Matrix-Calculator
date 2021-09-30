@@ -27,9 +27,9 @@ This Project was made under several conditions:
 * github: contains workflow
 * idea: contains file xml (.xml)
 * bin: contains java byte code (.class)
-* docs: contains pdf file of this project (.pdf)
+* doc: contains pdf file of this project (.pdf)
 * src/tubes/algeo: contains source code (.java)
-* test/tubes/algeo: contains file testing (.java)
+* test: contains file testing (.java)
 
 ## How to build and run
 Make sure you have installed maven and JDK in your computer.
