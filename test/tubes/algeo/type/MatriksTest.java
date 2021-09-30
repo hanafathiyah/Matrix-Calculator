@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import tubes.algeo.lib.type.Matriks;
+import tubes.algeo.lib.util.floatingPoint;
 
 public class MatriksTest {
   // Helper
@@ -270,5 +271,13 @@ public class MatriksTest {
     Matriks mres1 = matriksBuilderHelper(res);
 
     testKesamaanMatriks(mres1, m1.metodeCrammer());
+  }
+
+  @Test
+  public void testDeteminan0() throws Exception{
+    double[][] tc = {{1,1,-1,-1},{2,5,-7,-5},{2,-1,1,3},{5,2,-4,2}};
+
+    Matriks m1 = matriksBuilderHelper(tc);
+    Assert.assertTrue(floatingPoint.isEqual(m1.determinanByKofaktor(), 0));
   }
 }
