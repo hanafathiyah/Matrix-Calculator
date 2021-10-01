@@ -31,15 +31,36 @@ This Project was made under several conditions:
 * src/tubes/algeo: contains source code (.java)
 * test: contains file testing (.java)
 
-## How to build and run
+## How to build
 Make sure you have installed maven and JDK in your computer.
 
 After that, to run this app, please run:
 ```shell
 mvn package assembly:single
-java -jar bin/tubes-algeo.jar
 ```
-or you can run makefile:
+or simply you can run makefile:
 ```shell
+make build
+```
+
+## How to run
+To run this program, you can run this command:
+* Windows
+```powershell
+./run.bat
+```
+
+* Linux/Mac OS
+```bash
+./run.sh
+```
+
+* Makefile : This command will build and run the program
+```bash
 make
+```
+
+* Jar file
+```bash
+java -jar bin/tubes-algeo.jar
 ```
