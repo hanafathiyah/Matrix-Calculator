@@ -25,14 +25,14 @@ This Project was made under several conditions:
 
 ## Folder Structure
 * github: contains workflow
-* idea: contains file xml (.xml)
-* bin: contains java byte code (.class)
+* idea: contains file xml (.xml) for IntelliJ Idea configuration
+* bin: contains java byte code (.class) and jar file of the program
 * doc: contains pdf file of this project (.pdf)
 * src/tubes/algeo: contains source code (.java)
-* test: contains file testing (.java)
+* test: contains file testing (.java) and case study input.
 
 ## How to build
-Make sure you have installed maven and JDK in your computer.
+Make sure you have installed maven and JDK 17 in your computer.
 
 After that, to run this app, please run:
 ```shell
